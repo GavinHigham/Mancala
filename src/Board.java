@@ -53,7 +53,7 @@ public class Board {
 		int hand = board[startPosition];
 		if (hand == 0) return false; //Invalid move. Starting pit must contain stones.
 		//Anything past this point is part of a valid move.
-		board[hand] = 0;
+		board[startPosition] = 0;
 		boolean doneTurn = false;
 		
 		/*
