@@ -56,6 +56,8 @@ public class Board {
 		int hand = board[startPosition];
 		if (hand == 0) return false; //Invalid move. Starting pit must contain stones.
 		//Anything past this point is part of a valid move.
+		int ourMancalaIndex = player1Turn?7:0; //7 if it's player 1's turn, 0 otherwise.
+		int theirMancalaIndex = player1Turn?0:7; //0 if it's player 1's turn, 7 otherwise.
 		board[startPosition] = 0;
 		boolean doneTurn = false;
 		
@@ -67,7 +69,7 @@ public class Board {
 		//Modular arithmetic to keep us looping within the game board.
 		for (i = startPosition + 1; !doneTurn; i = (i+1)%14) {
 			//We don't place stones in the opponent's Mancala.
-			if (i != (player1Turn?0:7)) {
+			if (i != theirMancalaIndex) {
 				board[i]++;
 				hand--; //Move one stone from our hand to a pit.
 			}
@@ -85,10 +87,10 @@ public class Board {
 			int stolenStones = board[(14-i)%14];
 			board[i]--; //This is the stone from the last pit that we landed in.
 			board[(14-i)%14] -= stolenStones; //Steal from the other pit!
-			board[player1Turn?7:0] += 1 + stolenStones; //Put in our Mancala.
+			board[ourMancalaIndex] += 1 + stolenStones; //Put in our Mancala.
 		}
 		//If we landed in our own Mancala, it's still our turn. Otherwise it flips.
-		if (i != (player1Turn?7:0))
+		if (i != ourMancalaIndex)
 			player1Turn = !player1Turn;
 		updateChangeListeners();
 		return true;
