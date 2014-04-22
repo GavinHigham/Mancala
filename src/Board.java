@@ -3,7 +3,10 @@ import java.util.ArrayList;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-
+/**
+ *  A board class that represents the model for the MVC pattern.
+ *  Stores all variables and data pertaining to the Manacala game. 
+ */
 public class Board {
 	
 	/* Diagram of the array representation of the board.
