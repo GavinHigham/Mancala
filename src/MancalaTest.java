@@ -3,10 +3,12 @@
  *
  * @author Dakota
  */
-public class GameRunner
+public class MancalaTest
 {
     public static void main(String[] args)
     {
         ApplicationState start = new ApplicationState();
+        JewelGameView newView = new JewelGameView();
+        start.addChangeListener(newView);
     }
 }

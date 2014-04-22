@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 /**
  * This class keeps track of the state of the game and the board.
  * It keeps track of which views are being displayed. 
@@ -7,7 +10,7 @@ import java.util.ArrayList;
  */
 public class ApplicationState
 {
-    private ArrayList<View> views;
+    private ArrayList<ChangeListener> changeListeners; //Just views in this case.
     private Board board;
     private int state;
     private Board currentBoard;
@@ -16,17 +19,10 @@ public class ApplicationState
     
     public ApplicationState()
     {
-        views = new ArrayList<>();
+        changeListeners = new ArrayList<>();
         board = new Board();
-        
     } 
-    /**
-     * 
-     */
-    public void stateChanged()
-    {
-        //redraw everything
-    }
+
     /**
      * Updates the state of the application.
      */
@@ -42,4 +38,36 @@ public class ApplicationState
     {
         
     }
+    
+    /*
+     * Gets the board int array representation from the Board object.
+     * @return the board int array representation.
+     */
+    public int[] getBoardState() {
+    	return board.getBoardState();
+    }
+    
+    /*
+     * Gets the board active player boolean.
+     * @return true if it is Player 1's turn.
+     */
+    public boolean getPlayer1Turn() {
+    	return board.getPlayer1Turn();
+    }
+    
+	/*
+	 * Registers a new ChangeListener.
+	 * @param c The new ChangeListener to register.
+	 */
+	public void addChangeListener(ChangeListener c) {
+		changeListeners.add(c);
+	}
+	
+	/*
+	 * Updates all registered views. Typically called after a state change of some sort.
+	 */
+	public void updateChangeListeners() {
+		for (ChangeListener c : changeListeners)
+			c.stateChanged(new ChangeEvent(this));
+	}
 }

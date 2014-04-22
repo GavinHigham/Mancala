@@ -1,8 +1,3 @@
-import java.util.ArrayList;
-
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 /**
  *  A board class that represents the model for the MVC pattern.
  *  Stores all variables and data pertaining to the Manacala game. 
@@ -20,14 +15,12 @@ public class Board {
 	
 	int[] board;
 	boolean player1Turn;
-	ArrayList<ChangeListener> changeListeners;
 	
 	/*
 	 * Constructor for new Board objects.
 	 */
 	Board() {
 		board = new int[14];
-		changeListeners = new ArrayList<ChangeListener>();
 		setNewGame();
 	}
 	
@@ -92,7 +85,6 @@ public class Board {
 		//If we landed in our own Mancala, it's still our turn. Otherwise it flips.
 		if (i != ourMancalaIndex)
 			player1Turn = !player1Turn;
-		updateChangeListeners();
 		return true;
 	}
 	
@@ -100,7 +92,7 @@ public class Board {
 	 * Returns a copy of the current board state.
 	 * @return a copy of the current board state.
 	 */
-	public int[] getCurrentBoardState() {
+	public int[] getBoardState() {
 		return board.clone();
 	}
 	
@@ -108,23 +100,7 @@ public class Board {
 	 * Tells which player's turn it is.
 	 * @return true if it is player 1's turn. False otherwise.
 	 */
-	public boolean player1Turn() {
-		return player1Turn();
-	}
-	
-	/*
-	 * Registers a new ChangeListener.
-	 * @param c The new ChangeListener to register.
-	 */
-	public void addChangeListener(ChangeListener c) {
-		changeListeners.add(c);
-	}
-	
-	/*
-	 * Updates all registered views. Typically called after a state change of some sort.
-	 */
-	public void updateChangeListeners() {
-		for (ChangeListener c : changeListeners)
-			c.stateChanged(new ChangeEvent(this));
+	public boolean getPlayer1Turn() {
+		return player1Turn;
 	}
 }
