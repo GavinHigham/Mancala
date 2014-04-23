@@ -8,14 +8,11 @@
 
 public class JewelGameView extends GameView
 {
-	JewelGameView() {
-		
+	ApplicationState model;
+	JewelGameView(ApplicationState model) {
+		this.model = model;
 	}
 	
-	public void paintComponent() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public void redraw() {
 		// TODO Auto-generated method stub

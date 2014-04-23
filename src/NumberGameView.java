@@ -7,6 +7,11 @@
  */
 public class NumberGameView extends GameView
 {
+	ApplicationState model;
+	public NumberGameView(ApplicationState model) {
+		this.model = model;
+	}
+	
 	public void paintComponent() {
 		// TODO Auto-generated method stub
 		

@@ -12,7 +12,7 @@ import javax.swing.event.ChangeListener;
  */
 public class MenuView extends JPanel implements ChangeListener {
 
-    public MenuView(final ApplicationState controller) {
+    public MenuView(final ApplicationState model) {
         setLayout(new BorderLayout());
 
         JButton styleNum = new JButton("Number Style");
@@ -24,7 +24,7 @@ public class MenuView extends JPanel implements ChangeListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int styleIndex = 1;
-                controller.setState(styleIndex);
+                model.setState(styleIndex);
             }
         });
 
@@ -32,7 +32,7 @@ public class MenuView extends JPanel implements ChangeListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int styleIndex = 2;
-                controller.setState(styleIndex);
+                model.setState(styleIndex);
             }
         });
         

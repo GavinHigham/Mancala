@@ -13,9 +13,6 @@ abstract class GameView extends JPanel implements ChangeListener
 	boolean player1Turn; //Same ^
 	ApplicationState model;
 	
-	
-	
-    public abstract void paintComponent();
     public abstract void redraw();
     
     public void stateChanged(ChangeEvent e) {
