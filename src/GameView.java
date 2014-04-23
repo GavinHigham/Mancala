@@ -7,10 +7,13 @@ import javax.swing.event.ChangeListener;
  * 
  * @author P.U.G.S.
  */
-abstract class View extends JPanel implements ChangeListener
+abstract class GameView extends JPanel implements ChangeListener
 {
 	int[] board; //For display purposes. Local copy of boards state, may be stale if not updated.
 	boolean player1Turn; //Same ^
+	ApplicationState model;
+	
+	
 	
     public abstract void paintComponent();
     public abstract void redraw();

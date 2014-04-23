@@ -6,8 +6,12 @@
  * @author P.U.G.S.
  */
 
-public class JewelGameView extends View
+public class JewelGameView extends GameView
 {
+	JewelGameView() {
+		
+	}
+	
 	public void paintComponent() {
 		// TODO Auto-generated method stub
 		

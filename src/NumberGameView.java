@@ -5,7 +5,7 @@
  *
  * @author P.U.G.S.
  */
-public class NumberGameView extends View
+public class NumberGameView extends GameView
 {
 	public void paintComponent() {
 		// TODO Auto-generated method stub

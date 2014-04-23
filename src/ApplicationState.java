@@ -1,5 +1,9 @@
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 /**
@@ -14,14 +18,30 @@ public class ApplicationState
     private Board board;
     private int state;
     private Board currentBoard;
-    private View displyedView;
+    private JFrame mainFrame;
+    private GameView displyedView;
    // private View[] theviews;
     
     public ApplicationState()
     {
         changeListeners = new ArrayList<>();
         board = new Board();
+        mainFrame = new JFrame();
+		mainFrame.setMinimumSize(new Dimension(400, 170));
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainFrame.setVisible(true);
     } 
+    
+    public void setState(int state) {
+    	this.state = state;
+        mainFrame.removeAll();
+        mainFrame.validate();
+        mainFrame.repaint();
+        JPanel style = (JPanel)changeListeners.get(state);
+        mainFrame.add(style, BorderLayout.CENTER);
+        mainFrame.validate();
+        mainFrame.repaint();
+    }
 
     /**
      * Updates the state of the application.
