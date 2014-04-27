@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,7 +28,7 @@ abstract class GameView extends JPanel implements ChangeListener {
     public GameView() {
 
         setLayout(null); //Layouts failed me
-        playingPane = new JPanel(); //Pane where we can draw the board
+        playingPane = new BoardPanel(); //Pane where we can draw the board
         playingPane.setBounds(50, 70, 800, 300);
         playingPane.setBorder(BorderFactory.createLineBorder(Color.black, 5));
 
@@ -40,6 +41,8 @@ abstract class GameView extends JPanel implements ChangeListener {
                 //TODO add undo functionality
             }
         });
+        
+        
         this.add(undoButton);
         this.add(playingPane);
     }
