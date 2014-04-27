@@ -28,6 +28,7 @@ public class ApplicationState {
     public ApplicationState() {
         changeListeners = new ArrayList<>();
         board = new Board();
+        board.setNewGame();
         mainFrame = new JFrame();
         mainFrame.setMinimumSize(new Dimension(550, 200));
         mainFrame.setLayout(new BorderLayout());
@@ -45,6 +46,7 @@ public class ApplicationState {
         mainFrame.validate();
         mainFrame.repaint();
         JPanel style = (JPanel) changeListeners.get(state);
+        style.repaint();
         mainFrame.add(style, BorderLayout.CENTER);
         mainFrame.validate();
         mainFrame.repaint();
