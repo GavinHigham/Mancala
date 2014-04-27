@@ -33,17 +33,22 @@ public class ApplicationState {
         mainFrame.setLayout(new BorderLayout());
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setVisible(true);
+        mainFrame.setResizable(false);
     }
 
     public void setState(int state) {
         this.state = state;
         mainFrame.getContentPane().removeAll();
+        if (state > 0) {
+            mainFrame.setSize(900, 500);
+        }
         mainFrame.validate();
         mainFrame.repaint();
         JPanel style = (JPanel) changeListeners.get(state);
         mainFrame.add(style, BorderLayout.CENTER);
         mainFrame.validate();
         mainFrame.repaint();
+
     }
 
     /**
