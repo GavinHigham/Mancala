@@ -7,23 +7,27 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
- *
+ * This view displays the menu for the application
  * @author Dakota
  */
 public class MenuView extends JPanel implements ChangeListener {
 
+    /**
+     * Displays the main menu of the Mancala game
+     * @param model the Application state used for this view
+     */
     public MenuView(final ApplicationState model) {
         setLayout(new BorderLayout());
 
         JButton styleNum = new JButton("Number Style");
         JButton styleJewel = new JButton("Jewel Style");
         
-        JLabel title = new JLabel("                                     Welcome to our Mancala game. Please choose a style.");
+        JLabel title = new JLabel("    Welcome to our Mancala game. Please choose a style.");
 
         styleNum.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int styleIndex = 1;
+                int styleIndex = 2;
                 model.setState(styleIndex);
             }
         });
@@ -31,7 +35,7 @@ public class MenuView extends JPanel implements ChangeListener {
         styleJewel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int styleIndex = 2;
+                int styleIndex = 1;
                 model.setState(styleIndex);
             }
         });
