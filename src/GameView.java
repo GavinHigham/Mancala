@@ -1,10 +1,9 @@
-
 import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
- * This is an interface which will be implemented by the other view classes.
+ * This is an abstract class which will be utilized through the Template Pattern.
  *
  * @author P.U.G.S.
  */
