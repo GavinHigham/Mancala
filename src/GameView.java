@@ -1,14 +1,4 @@
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.geom.Ellipse2D;
-import java.util.ArrayList;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -22,10 +12,6 @@ abstract class GameView extends JPanel implements ChangeListener {
 
     int[] board; //For display purposes. Local copy of boards state, may be stale if not updated.
     boolean player1Turn; //Same ^
-
-
-    public GameView() {
-    }
 
     public abstract void redraw();
 

@@ -25,17 +25,17 @@ public class JewelGameView extends GameView {
         setLayout(null); //Layouts failed me
         JButton undoButton = new JButton("Undo");
         undoButton.setBounds(800, 10, 75, 50); //Size and position of button
-        
+
         String playerTurn;
         if (model.getPlayer1Turn()) {
             playerTurn = "Player one's turn";
         } else {
             playerTurn = "Player two's turn";
         }
-        
+
         JLabel playerLabel = new JLabel(playerTurn);
+        playerLabel.setBounds(100, 5, 100, 100);
         this.add(playerLabel);
-        playerLabel.setLocation(100, 10);
 
         undoButton.addActionListener(new ActionListener() {
             @Override
@@ -43,6 +43,8 @@ public class JewelGameView extends GameView {
                 //TODO add undo functionality
             }
         });
+
+
         this.add(undoButton);
         this.model = model;
         int[] stones = model.getBoardState();
@@ -53,6 +55,7 @@ public class JewelGameView extends GameView {
         this.add(playingPane);
     }
 
+    @Override
     public void redraw() {
         // TODO Auto-generated method stub
     }

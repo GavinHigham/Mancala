@@ -1,6 +1,5 @@
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -28,8 +27,6 @@ public class BoardPanel extends JPanel {
 
         JPanel smallPits = new JPanel();
         GridLayout grid = new GridLayout(2, 6);
-        grid.setHgap(10);
-        grid.setVgap(10);
         //Could only get grid layout to work. Gridbag layout would be better.
 
         smallPits.setLayout(grid);

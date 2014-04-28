@@ -14,6 +14,7 @@ public class MancalaTest
         model.addChangeListener(menu);
         model.addChangeListener(newView);
         model.addChangeListener(num);
+        //Starts state at menu
         model.setState(0);
     }
 }
