@@ -11,7 +11,6 @@ import javax.swing.JPanel;
  * @author Dakota
  */
 public class BoardPanel extends JPanel {
-
     private PitIcon[] pits;
 
     /**
@@ -20,9 +19,6 @@ public class BoardPanel extends JPanel {
      * @param stones the number of stones per pit
      */
     public BoardPanel(int[] stones, int player1Mancala, int player2Mancala) {
-        int largePitIndexRight = 7;
-        int largePitIndexLeft = 0;
-        int pitIndex = 12;
 
         JPanel smallPits = new JPanel();
         GridLayout grid = new GridLayout(2, 6);
@@ -40,30 +36,17 @@ public class BoardPanel extends JPanel {
 
         this.setLayout(new BorderLayout());
 
+        //Creates the large pits (Mancalas) and places their stones in them.
+        //Wrapping the Icons in JLabels.
+        JLabel player1Pit = new JLabel();
+        JLabel player2Pit = new JLabel();
+        player2Pit.setIcon(new PitIcon(75, 200, player1Mancala));
+        player1Pit.setIcon(new PitIcon(75, 200, player2Mancala));
 
-        //Creates the large pit and places their stones in them
-        PitIcon pitLarge = new PitIcon(75, 200, player1Mancala);
-        PitIcon pitLargeR = new PitIcon(75, 200, player2Mancala);
-
-        //Need to convert Icon to JLabel because Java is dumb
-        JLabel pitLabLargeR = new JLabel();
-        JLabel pitLabLarge = new JLabel();
-        pitLabLarge.setIcon(pitLarge);
-        pitLabLargeR.setIcon(pitLargeR);
-
-        this.add(pitLabLarge, BorderLayout.EAST);
-        this.add(pitLabLargeR, BorderLayout.WEST);
+        this.add(player2Pit, BorderLayout.EAST);
+        this.add(player1Pit, BorderLayout.WEST);
         this.add(smallPits, BorderLayout.CENTER);
         this.validate();
         this.repaint();
-    }
-
-    /**
-     * changes the amount of stones in the pit
-     *
-     * @param stones
-     */
-    public void changeStones(int[] stones) {
-        //TODO add method that repaints a given board
     }
 }
