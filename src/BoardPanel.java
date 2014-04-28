@@ -42,11 +42,8 @@ public class BoardPanel extends JPanel {
 
 
         //Creates the large pit and places their stones in them
-        PitIcon pitLarge = new PitIcon(75, 200, stones[largePitIndexRight]);
-        PitIcon pitLargeR = new PitIcon(75, 200, stones[largePitIndexLeft]);
-
-        pits[largePitIndexRight] = pitLarge;
-        pits[largePitIndexLeft] = pitLargeR;
+        PitIcon pitLarge = new PitIcon(75, 200, player1Mancala);
+        PitIcon pitLargeR = new PitIcon(75, 200, player2Mancala);
 
         //Need to convert Icon to JLabel because Java is dumb
         JLabel pitLabLargeR = new JLabel();
