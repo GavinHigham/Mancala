@@ -19,11 +19,8 @@ public class ApplicationState {
 
     private ArrayList<ChangeListener> changeListeners; //Just views in this case.
     private Board board;
-    private int state;
-    private Board currentBoard;
     private JFrame mainFrame;
-    private GameView displyedView;
-    // private View[] theviews;
+    //private GameView displayedView;
 
     public ApplicationState() {
         changeListeners = new ArrayList<>();
@@ -38,7 +35,6 @@ public class ApplicationState {
     }
 
     public void setState(int state) {
-        this.state = state;
         mainFrame.getContentPane().removeAll();
         if (state > 0) {
             mainFrame.setSize(900, 500);

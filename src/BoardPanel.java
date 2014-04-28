@@ -19,8 +19,7 @@ public class BoardPanel extends JPanel {
      *
      * @param stones the number of stones per pit
      */
-    public BoardPanel(int[] stones) {
-        pits = new PitIcon[13];
+    public BoardPanel(int[] stones, int player1Mancala, int player2Mancala) {
         int largePitIndexRight = 7;
         int largePitIndexLeft = 0;
         int pitIndex = 12;
@@ -33,18 +32,10 @@ public class BoardPanel extends JPanel {
 
         //creates a pit and places stones in each of them
         for (int i = 0; i < 12; i++) {
-            PitIcon pitIc = new PitIcon(90, 90, stones[pitIndex]);
-            pits[pitIndex] = pitIc;
-
             JLabel pitLab = new JLabel();
-            pitLab.setIcon(pitIc);
+            pitLab.setIcon(new PitIcon(90, 90, stones[i]));
             pitLab.setPreferredSize(new Dimension(100, 100));
             smallPits.add(pitLab);
-
-            pitIndex--;
-            if (pitIndex == largePitIndexRight) {
-                pitIndex--;
-            }
         }
 
         this.setLayout(new BorderLayout());

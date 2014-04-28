@@ -46,8 +46,7 @@ public class NumberGameView extends GameView {
         
         this.add(undoButton);
         this.model = model;
-        int[] stones = model.getBoardState();
-        boardView = new BoardPanel(stones);
+        boardView = new BoardPanel(model.getPits(), model.getMancala1(), model.getMancala2());
         playingPane = boardView; //Pane where we can draw the board
         playingPane.setBounds(50, 70, 800, 300);
         playingPane.setBorder(BorderFactory.createLineBorder(Color.black, 5));
