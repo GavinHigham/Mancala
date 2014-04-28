@@ -1,4 +1,3 @@
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -22,6 +21,9 @@ public class ApplicationState {
     private JFrame mainFrame;
     //private GameView displayedView;
 
+/**
+ * Constructor to create a state of the game.
+ */
     public ApplicationState() {
         changeListeners = new ArrayList<>();
         board = new Board();
@@ -34,6 +36,10 @@ public class ApplicationState {
         mainFrame.setResizable(false);
     }
 
+   /*
+   * Gets the current state of the Mancala game.
+   @param state The state of the game.
+   */
     public void setState(int state) {
         mainFrame.getContentPane().removeAll();
         if (state > 0) {
@@ -57,7 +63,7 @@ public class ApplicationState {
     }
 
     /**
-     * Updates
+     * Updates the game mode.
      */
     public void updateGameMode() {
     }
