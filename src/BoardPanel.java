@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  */
 public class BoardPanel extends JPanel {
 
-    private pitIcon[] pits;
+    private PitIcon[] pits;
 
     /**
      * initializes the board view in this panel
@@ -20,7 +20,7 @@ public class BoardPanel extends JPanel {
      * @param stones the number of stones per pit
      */
     public BoardPanel(int[] stones) {
-        pits = new pitIcon[13];
+        pits = new PitIcon[13];
         int largePitIndexRight = 7;
         int largePitIndexLeft = 0;
         int pitIndex = 12;
@@ -33,7 +33,7 @@ public class BoardPanel extends JPanel {
 
         //creates a pit and places stones in each of them
         for (int i = 0; i < 12; i++) {
-            pitIcon pitIc = new pitIcon(90, 90, stones[pitIndex]);
+            PitIcon pitIc = new PitIcon(90, 90, stones[pitIndex]);
             pits[pitIndex] = pitIc;
 
             JLabel pitLab = new JLabel();
@@ -51,8 +51,8 @@ public class BoardPanel extends JPanel {
 
 
         //Creates the large pit and places their stones in them
-        pitIcon pitLarge = new pitIcon(75, 200, stones[largePitIndexRight]);
-        pitIcon pitLargeR = new pitIcon(75, 200, stones[largePitIndexLeft]);
+        PitIcon pitLarge = new PitIcon(75, 200, stones[largePitIndexRight]);
+        PitIcon pitLargeR = new PitIcon(75, 200, stones[largePitIndexLeft]);
 
         pits[largePitIndexRight] = pitLarge;
         pits[largePitIndexLeft] = pitLargeR;

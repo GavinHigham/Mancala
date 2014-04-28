@@ -10,7 +10,7 @@ import javax.swing.Icon;
  * This class creates a pit icon
  * @author Dakota
  */
-public class pitIcon implements Icon {
+public class PitIcon implements Icon {
     private Ellipse2D pit;
     private int width;
     private int height;
@@ -22,7 +22,7 @@ public class pitIcon implements Icon {
      * @param height
      * @param stones 
      */
-    public pitIcon(int width, int height, int stones) {
+    public PitIcon(int width, int height, int stones) {
         this.width = width;
         this.height = height;
         this.stones = stones;
