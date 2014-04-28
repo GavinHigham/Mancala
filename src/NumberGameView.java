@@ -40,7 +40,7 @@ public class NumberGameView extends GameView {
         }
 
         JLabel playerLabel = new JLabel(playerTurn);
-        playerLabel.setBounds(100, 5, 100, 100);
+        playerLabel.setBounds(100, 5, 200, 100);
         this.add(playerLabel);
         
         

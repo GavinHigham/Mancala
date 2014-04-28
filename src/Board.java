@@ -97,6 +97,42 @@ public class Board {
 	}
 	
 	/*
+	 * Returns a copy of the current board pits, not including Mancalas.
+	 * Like getBoardStata, but it looks like this:
+	 * [13][12][11][10][ 9][ 8]
+	 * [ 1][ 2][ 3][ 4][ 5][ 6]
+	 * For when these need to be accessed in left-to-right, top-to-bottom order.
+	 * @return a copy of the current board pits.
+	 */
+	public int[] getPits() {
+		int[] pits = new int[12];
+		int i;
+		for (i = 0; i < 6; i++) {
+			pits[i] = board[13-i]; //First row.
+		}
+		for (; i < 12; i++) { //i is now 6.
+			pits[i] = board[i-5]; //Second row.
+		}
+		return pits;
+	}
+	
+	/*
+	 * Gives the number of stones in the Mancala of player 1.
+	 * @return the number of stones in the Mancala of player 1.
+	 */
+	public int getMancala1() {
+		return board[7]; //board[7] is, as shown in the diagram, player 1's Mancala.
+	}
+	
+	/*
+	 * Gives the number of stones in the Mancala of player 2.
+	 * @return the number of stones in the Mancala of player 2.
+	 */
+	public int getMancala2() {
+		return board[0]; //board[7] is, as shown in the diagram, player 2's Mancala.
+	}
+	
+	/*
 	 * Tells which player's turn it is.
 	 * @return true if it is player 1's turn. False otherwise.
 	 */

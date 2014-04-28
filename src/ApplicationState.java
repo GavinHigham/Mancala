@@ -30,7 +30,7 @@ public class ApplicationState {
         board = new Board();
         board.setNewGame();
         mainFrame = new JFrame();
-        mainFrame.setMinimumSize(new Dimension(550, 200));
+        mainFrame.setMinimumSize(new Dimension(600, 200));
         mainFrame.setLayout(new BorderLayout());
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setVisible(true);
@@ -73,6 +73,37 @@ public class ApplicationState {
     public int[] getBoardState() {
         return board.getBoardState();
     }
+    
+	/*
+	 * (Wrapper for Board method)
+	 * Returns a copy of the current board pits, not including Mancalas.
+	 * Like getBoardStata, but it looks like this:
+	 * [13][12][11][10][ 9][ 8]
+	 * [ 1][ 2][ 3][ 4][ 5][ 6]
+	 * For when these need to be accessed in left-to-right, top-to-bottom order.
+	 * @return a copy of the current board pits.
+	 */
+	public int[] getPits() {
+		return board.getPits();
+	}
+	
+	/*
+	 * (Wrapper for Board method)
+	 * Gives the number of stones in the Mancala of player 1.
+	 * @return the number of stones in the Mancala of player 1.
+	 */
+	public int getMancala1() {
+		return board.getMancala1(); //board[7] is, as shown in the diagram, player 1's Mancala.
+	}
+	
+	/*
+	 * (Wrapper for Board method)
+	 * Gives the number of stones in the Mancala of player 2.
+	 * @return the number of stones in the Mancala of player 2.
+	 */
+	public int getMancala2() {
+		return board.getMancala2();
+	}
 
     /*
      * Gets the board active player boolean.
