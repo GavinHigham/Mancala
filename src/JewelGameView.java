@@ -17,11 +17,10 @@ import javax.swing.JPanel;
 public class JewelGameView extends GameView {
 
     private JPanel playingPane;
-    private BoardPanel boardView;
     private ApplicationState model;
 
     JewelGameView(ApplicationState model) {
-        this.model = model;
+ /**       this.model = model;
         setLayout(null); //Layouts failed me
         JButton undoButton = new JButton("Undo");
         undoButton.setBounds(800, 10, 75, 50); //Size and position of button
@@ -47,11 +46,10 @@ public class JewelGameView extends GameView {
 
         this.add(undoButton);
         this.model = model;
-        boardView = new BoardPanel(model.getPits(), model.getMancala1(), model.getMancala2());
-        playingPane = boardView; //Pane where we can draw the board
         playingPane.setBounds(50, 70, 800, 300);
         playingPane.setBorder(BorderFactory.createLineBorder(Color.black, 5));
         this.add(playingPane);
+        **/
     }
 
     @Override
