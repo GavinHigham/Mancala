@@ -13,7 +13,7 @@ import javax.swing.Icon;
  * @author Dakota
  */
 public class PitIcon implements Icon {
-=======
+	
     private int width;
     private int height;
     private int stones;
