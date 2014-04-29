@@ -1,8 +1,10 @@
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.geom.Ellipse2D;
 import javax.swing.Icon;
 
@@ -38,8 +40,10 @@ public class PitIcon implements Icon {
     @Override
     public void paintIcon(Component c, Graphics g, int x, int y) {
         Graphics2D g2 = (Graphics2D) g;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setStroke(new BasicStroke(3));     
         
-        Ellipse2D.Double p = new Ellipse2D.Double(0, 10, width, height);
+        Ellipse2D.Double p = new Ellipse2D.Double(2, 2, width - 4, height - 4);
         
         String strStones = "" + stones;
         int labelX = width / 2;
