@@ -16,7 +16,7 @@ import javax.swing.Icon;
  * 
  * @author P.U.G.S
  */
-public class pitIcon implements Icon {
+public class PitIcon implements Icon {
     private Ellipse2D pit;
     private int width;
     private int height;
