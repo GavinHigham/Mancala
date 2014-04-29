@@ -8,7 +8,8 @@ import javax.swing.Icon;
 
 /**
  * This class creates a pit icon
- * @author Dakota
+ * 
+ * @author P.U.G.S
  */
 public class PitIcon implements Icon {
     private Ellipse2D pit;

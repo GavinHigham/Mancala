@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 /**
  * Constructs a panel that displays a board
  *
- * @author Dakota
+ * @author P.U.G.S
  */
 public class BoardPanel extends JPanel {
     private PitIcon[] pits;

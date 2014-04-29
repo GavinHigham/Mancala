@@ -8,7 +8,7 @@ import javax.swing.event.ChangeListener;
 
 /**
  * This view displays the menu for the application
- * @author Dakota
+ * @author P.U.G.S
  */
 public class MenuView extends JPanel implements ChangeListener {
 

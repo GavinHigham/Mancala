@@ -10,9 +10,7 @@ import javax.swing.event.ChangeListener;
 /**
  * This class keeps track of the state of the game and the board. It keeps track
  * of which views are being displayed.
- *
- * @author
- * @P.U.G.S.
+ * @author P.U.G.S
  */
 public class ApplicationState {
 
