@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 
 import java.awt.BasicStroke;
+=======
+
+
+import java.awt.BasicStroke;
+
+>>>>>>> FETCH_HEAD
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
@@ -13,6 +20,10 @@ import javax.swing.Icon;
  * @author Dakota
  */
 public class PitIcon implements Icon {
+<<<<<<< HEAD
+=======
+    private Ellipse2D pit;
+>>>>>>> FETCH_HEAD
     private int width;
     private int height;
     private int stones;
