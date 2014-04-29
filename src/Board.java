@@ -38,6 +38,13 @@ public class Board {
 		player1Turn = true;
 	}
 	
+	public boolean playMoveRowMajorOrder(int pit) {
+		if (player1Turn && (pit < 0 || pit > 5)) return false; //Invalid move.
+		if (!player1Turn && (pit < 6 || pit > 11)) return false; //Invalid move.
+		if (player1Turn) return playMove(pit - 6);
+		else return playMove(5 - pit);
+	}
+	
 	/*
 	 * Plays a move for the active player.
 	 * @param pit An index for the pit to begin with. Should be in the range 0-5 inclusive.

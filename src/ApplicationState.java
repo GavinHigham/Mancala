@@ -112,6 +112,19 @@ public class ApplicationState {
     public boolean getPlayer1Turn() {
         return board.getPlayer1Turn();
     }
+    
+    /*
+     * Plays a move in Row Major Order. Useful for access from mouse listeners.
+     * Looks like this:
+     * [ 0][ 1][ 2][ 3][ 4][ 5]
+	 * [ 6][ 7][ 8][ 9][10][11]
+	 * Basically, give the integer for which pit you want to try a move from.
+	 * @param pit the pit to attempt to play a move from.
+	 * @return Whether or not the move was valid.
+     */
+    public boolean playMoveRowMajorOrder(int pit) {
+    	return board.playMoveRowMajorOrder(pit);
+    }
 
     /*
      * Registers a new ChangeListener.
