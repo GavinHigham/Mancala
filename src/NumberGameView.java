@@ -35,12 +35,12 @@ public class NumberGameView extends GameView {
                 //TODO add undo functionality
             }
         });
+        this.add(undoButton);
        
         playerLabel = new JLabel(getPlayerTurnString());
         playerLabel.setBounds(100, 5, 200, 100);
         this.add(playerLabel);
-
-        this.add(undoButton);
+        
         playingPane = new JPanel();
         playingPane.setLayout(new BorderLayout());
         playingPane.setBounds(50, 70, 800, 300);
@@ -63,7 +63,6 @@ public class NumberGameView extends GameView {
 
     @Override
     public void redraw() {
-        //setLayout(null); //Layouts failed me
     	playingPane.removeAll(); //We may need to change this to remove EVERYTHING.
         
         //Updating playerLabel
