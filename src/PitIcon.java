@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 
 import java.awt.BasicStroke;
-=======
->>>>>>> FETCH_HEAD
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
@@ -13,11 +10,9 @@ import javax.swing.Icon;
 
 /**
  * This class creates a pit icon
- * 
- * @author P.U.G.S
+ * @author Dakota
  */
-public class pitIcon implements Icon {
-    private Ellipse2D pit;
+public class PitIcon implements Icon {
     private int width;
     private int height;
     private int stones;
@@ -49,13 +44,29 @@ public class pitIcon implements Icon {
         
         Ellipse2D.Double p = new Ellipse2D.Double(2, 2, width - 4, height - 4);
         
-        String strStones = "" + stones;
-        int labelX = width / 2;
-        int labelY = height / 2;
-        
-        
         g2.setColor(Color.BLACK);
         g2.draw(p);
+        
+        int labelX = width / 2;
+        int labelY = height / 2;
+        if (stones > 0) {
+        	int padding = 5;
+	        int numCols = (int)Math.round(Math.sqrt(stones));
+	        int diameter = width/numCols - padding;
+	        
+	        for (int i = 0; i < stones; i++) {
+	        	Ellipse2D.Double tempEllipse = new Ellipse2D.Double(
+	        			(i%numCols)*(width/numCols)+padding,
+	        			(i/numCols)*(height/numCols)+padding,
+	        			diameter,
+	        			diameter);
+	        	g2.setColor(new Color(100, 100, 255));
+	        	g2.fill(tempEllipse);
+	        	g2.setColor(Color.BLACK);
+	        	g2.draw(tempEllipse);
+	        }
+        }
+        String strStones = "" + stones;
         g2.drawString(strStones, labelX, labelY);
         //TODO Icon class only works for number view
     }
