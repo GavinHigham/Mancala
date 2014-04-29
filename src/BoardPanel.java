@@ -1,4 +1,3 @@
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -8,7 +7,7 @@ import javax.swing.JPanel;
 /**
  * Constructs a panel that displays a board
  *
- * @author Dakota
+ * @author P.U.G.S
  */
 public class BoardPanel extends JPanel {
     private PitIcon[] pits;
@@ -43,6 +42,7 @@ public class BoardPanel extends JPanel {
         player2Pit.setIcon(new PitIcon(75, 200, player1Mancala));
         player1Pit.setIcon(new PitIcon(75, 200, player2Mancala));
 
+        // inserts the large Mancala pits and small pits onto the game board
         this.add(player2Pit, BorderLayout.EAST);
         this.add(player1Pit, BorderLayout.WEST);
         this.add(smallPits, BorderLayout.CENTER);

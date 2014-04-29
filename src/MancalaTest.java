@@ -1,7 +1,7 @@
 /*
  * This class contains the main method to get the Mancala game started. 
  *
- * @author Dakota
+ * @author P.U.G.S
  */
 public class MancalaTest
 {

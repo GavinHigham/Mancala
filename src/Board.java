@@ -1,6 +1,7 @@
 /**
  *  A board class that represents the model for the MVC pattern.
  *  Stores all variables and data pertaining to the Manacala game. 
+ * @author P.U.G.S
  */
 public class Board {
 	

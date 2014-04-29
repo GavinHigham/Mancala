@@ -8,7 +8,7 @@ import javax.swing.event.ChangeListener;
 
 /**
  * This view displays the menu for the application
- * @author Dakota
+ * @author P.U.G.S
  */
 public class MenuView extends JPanel implements ChangeListener {
 
@@ -43,12 +43,10 @@ public class MenuView extends JPanel implements ChangeListener {
         add(styleNum, BorderLayout.EAST);
         add(styleJewel, BorderLayout.WEST);
         add(title, BorderLayout.CENTER);
-
     }
 
 	@Override
 	public void stateChanged(ChangeEvent e) {
-		// TODO Auto-generated method stub
 		// Stub. Main menu always looks the same.
 	}
 }
