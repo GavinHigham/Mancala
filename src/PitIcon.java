@@ -48,10 +48,8 @@ public class PitIcon implements Icon {
         g2.setColor(Color.BLACK);
         g2.draw(p);
         
-        int labelX = width / 2;
-        int labelY = height / 2;
         if (stones > 0) {
-        	int padding = 5;
+        	int padding = 5; // We could make this number smaller to have the stones fit into the pit
 	        int numCols = (int)Math.round(Math.sqrt(stones));
 	        int diameter = width/numCols - padding;
 	        
@@ -67,8 +65,6 @@ public class PitIcon implements Icon {
 	        	g2.draw(tempEllipse);
 	        }
         }
-        String strStones = "" + stones;
-        g2.drawString(strStones, labelX, labelY);
         //TODO Icon class only works for number view
     }
 
