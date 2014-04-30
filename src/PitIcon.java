@@ -20,9 +20,9 @@ public class PitIcon implements Icon {
     
     /**
      * Initializes variables used in pitIcon
-     * @param width
-     * @param height
-     * @param stones 
+     * @param width The width of the pit
+     * @param height the height of the pit
+     * @param stones the number of stones in this pit
      */
     public PitIcon(int width, int height, int stones) {
         this.width = width;
@@ -32,10 +32,10 @@ public class PitIcon implements Icon {
 
     /**
      * Paints the icon with the given stones
-     * @param c
-     * @param g
-     * @param x
-     * @param y 
+     * @param c Component that can be passed to this method
+     * @param g The graphics content
+     * @param x The x-axis positioning 
+     * @param y The y-axis positioning
      */
     @Override
     public void paintIcon(Component c, Graphics g, int x, int y) {
@@ -49,9 +49,10 @@ public class PitIcon implements Icon {
         g2.draw(p);
         
         if (stones > 0) {
-        	int padding = 5; // We could make this number smaller to have the stones fit into the pit
+        	int padding = 5;
 	        int numCols = (int)Math.round(Math.sqrt(stones));
 	        int diameter = width/numCols - padding;
+                //We could rework the diameter or make the padding larger to make it so the stones fit into the pit
 	        
 	        for (int i = 0; i < stones; i++) {
 	        	Ellipse2D.Double tempEllipse = new Ellipse2D.Double(
@@ -65,7 +66,6 @@ public class PitIcon implements Icon {
 	        	g2.draw(tempEllipse);
 	        }
         }
-        //TODO Icon class only works for number view
     }
 
     /**
