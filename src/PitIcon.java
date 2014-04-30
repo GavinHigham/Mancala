@@ -7,19 +7,22 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Ellipse2D;
 import javax.swing.Icon;
+import java.util.Random;
 
 /**
  * This class creates a pit icon
+ *
  * @author Dakota
  */
 public class PitIcon implements Icon {
-	
+
     private int width;
     private int height;
     private int stones;
-    
+
     /**
      * Initializes variables used in pitIcon
+     *
      * @param width The width of the pit
      * @param height the height of the pit
      * @param stones the number of stones in this pit
@@ -32,45 +35,73 @@ public class PitIcon implements Icon {
 
     /**
      * Paints the icon with the given stones
+     *
      * @param c Component that can be passed to this method
      * @param g The graphics content
-     * @param x The x-axis positioning 
+     * @param x The x-axis positioning
      * @param y The y-axis positioning
      */
     @Override
     public void paintIcon(Component c, Graphics g, int x, int y) {
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setStroke(new BasicStroke(3));     
-        
+        g2.setStroke(new BasicStroke(3));
+
         Ellipse2D.Double p = new Ellipse2D.Double(2, 2, width - 4, height - 4);
-        
+
         g2.setColor(Color.BLACK);
         g2.draw(p);
-        
+
         if (stones > 0) {
-        	int padding = 5;
-	        int numCols = (int)Math.round(Math.sqrt(stones));
-	        int diameter = width/numCols - padding;
-                //We could rework the diameter or make the padding larger to make it so the stones fit into the pit
-	        
-	        for (int i = 0; i < stones; i++) {
-	        	Ellipse2D.Double tempEllipse = new Ellipse2D.Double(
-	        			(i%numCols)*(width/numCols)+padding,
-	        			(i/numCols)*(height/numCols)+padding,
-	        			diameter,
-	        			diameter);
-	        	g2.setColor(new Color(100, 100, 255));
-	        	g2.fill(tempEllipse);
-	        	g2.setColor(Color.BLACK);
-	        	g2.draw(tempEllipse);
-	        }
+            int padding = 5;
+            int numCols = (int) Math.round(Math.sqrt(stones));
+            int diameter = width / numCols - padding;
+            //We could rework the diameter or make the padding larger to make it so the stones fit into the pit
+
+            for (int i = 0; i < stones; i++) {
+                Ellipse2D.Double tempEllipse = new Ellipse2D.Double(
+                        (i % numCols) * (width / numCols) + padding,
+                        (i / numCols) * (height / numCols) + padding,
+                        diameter,
+                        diameter);
+                //g2.setColor(new Color(100, 100, 255));
+                //Now sets to a random color
+                g2.setColor(getRandomColor());
+                g2.fill(tempEllipse);
+                g2.setColor(Color.BLACK);
+                g2.draw(tempEllipse);
+            }
         }
     }
 
     /**
+     * Returns a random color 
+     * @return a random color
+     */
+    public Color getRandomColor() {
+        Random rand = new Random();
+        int max = 255;
+        int min = 0;
+
+        long range = (long) max - (long) min + 1;
+
+        long randRed = (long) (range * rand.nextDouble());
+        long randBlue = (long) (range * rand.nextDouble());
+        long randGreen = (long) (range * rand.nextDouble());
+        
+        int randRedInt = (int)randRed;
+        int randBlueInt = (int)randBlue;
+        int randGreenInt = (int)randGreen;
+        
+        Color randColor = new Color(randRedInt, randBlueInt, randGreenInt);
+
+        return randColor;
+    }
+
+    /**
      * Returns the icon width
-     * @return 
+     *
+     * @return
      */
     @Override
     public int getIconWidth() {
@@ -79,11 +110,11 @@ public class PitIcon implements Icon {
 
     /**
      * returns the icon height
-     * @return 
+     *
+     * @return
      */
     @Override
     public int getIconHeight() {
         return height;
     }
-    
 }
