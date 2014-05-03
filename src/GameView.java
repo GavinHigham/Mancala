@@ -37,7 +37,7 @@ public class GameView extends JPanel implements ChangeListener {
     GameViewConfig config;
 
     public GameView(final ApplicationState model, GameViewConfig config) {
-    	this.config = config;
+        this.config = config;
         this.model = model;
         board = model.getPits();
         JButton undoButton = new JButton("Undo");
@@ -45,7 +45,8 @@ public class GameView extends JPanel implements ChangeListener {
         undoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO add undo functionality
+                model.undo();
+                redraw();
             }
         });
         this.add(undoButton);
@@ -59,7 +60,7 @@ public class GameView extends JPanel implements ChangeListener {
         playingPane.setBounds(50, 70, 800, 300);
         playingPane.setBorder(BorderFactory.createLineBorder(Color.black, 5));
         this.add(playingPane);
-        
+
         JPanel smallPits = new JPanel();
         pitIcons = new ArrayList<PitIcon>();
 
@@ -105,7 +106,7 @@ public class GameView extends JPanel implements ChangeListener {
         playingPane.add(player1Pit, BorderLayout.WEST);
         playingPane.add(smallPits, BorderLayout.CENTER);
         playingPane.validate();
-        
+
         redraw();
     }
 
@@ -122,19 +123,19 @@ public class GameView extends JPanel implements ChangeListener {
     }
 
     public void redraw() {
-    	board = model.getPits();
+        board = model.getPits();
 
         //Updating playerLabel
         playerLabel.setText(getPlayerTurnString());
         //Updating pits.
         for (int i = 0; i < 12; i++) {
-        	pitIcons.get(i).setStones(board[i]);
+            pitIcons.get(i).setStones(board[i]);
         }
         player1Mancala.setStones(model.getMancala1());
         player2Mancala.setStones(model.getMancala2());
         playingPane.repaint();
     }
-    
+
     public void stateChanged(ChangeEvent e) {
         redraw();
     }

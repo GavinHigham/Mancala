@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.util.Stack;
 
 /**
  * This class keeps track of the state of the game and the board. It keeps track
@@ -19,6 +20,9 @@ public class ApplicationState {
     private ArrayList<ChangeListener> changeListeners; //Just views in this case.
     private Board board;
     private JFrame mainFrame;
+    private Stack<int[]> prevStates;
+    private Stack<Boolean> playerTurns;
+    private int undos;
     //private GameView displayedView;
 
     /**
@@ -27,6 +31,9 @@ public class ApplicationState {
     public ApplicationState() {
         changeListeners = new ArrayList<>();
         board = new Board();
+        prevStates = new Stack();
+        playerTurns = new Stack();
+
         mainFrame = new JFrame();
         mainFrame.setMinimumSize(new Dimension(600, 200));
         mainFrame.setLayout(new BorderLayout());
@@ -47,7 +54,7 @@ public class ApplicationState {
         mainFrame.validate();
         mainFrame.repaint();
         JPanel style = (JPanel) changeListeners.get(state);
-        
+
         //This is ugly as hell. Can someone make something better.
         if (state != 0) {
             //Have to cast to call redraw otherwise first screen does not display stones
@@ -84,6 +91,20 @@ public class ApplicationState {
      */
     public int[] getBoardState() {
         return board.getBoardState();
+    }
+    
+    public Board getCurrentBoard() {
+        return board;
+    }
+    
+    public boolean undo() {
+        if (prevStates.size() == 0 || undos <= 0) {
+            return false;
+        }
+        board.setBoardState(prevStates.pop(), playerTurns.pop());
+        undos--;
+        updateChangeListeners();
+        return true;
     }
 
     /*
@@ -135,7 +156,15 @@ public class ApplicationState {
      * @return Whether or not the move was valid.
      */
     public boolean playMoveRowMajorOrder(int pit) {
+        int[] currentState = board.getBoardState();
+        boolean currentTurn = board.getPlayer1Turn();
         boolean moveSuccessful = board.playMoveRowMajorOrder(pit);
+        if (moveSuccessful) {
+            //Adds current board to stack for undo function
+            prevStates.push(currentState);
+            playerTurns.push(currentTurn);
+            undos = 3;
+        }
         updateChangeListeners();
         return moveSuccessful;
     }

@@ -107,6 +107,11 @@ public class Board {
 	public int[] getBoardState() {
 		return board.clone();
 	}
+        
+        public void setBoardState(int[] state, boolean playerTurn) {
+            board = state;
+            player1Turn = playerTurn;
+        }
 	
 	/*
 	 * Returns a copy of the current board pits, not including Mancalas.
