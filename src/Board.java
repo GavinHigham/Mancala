@@ -22,7 +22,7 @@ public class Board {
 	 */
 	Board() {
 		board = new int[14];
-		setNewGame(3);
+		//setNewGame(3);
 	}
 	
 	Board(int stonesPerPit) {
