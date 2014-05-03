@@ -142,7 +142,7 @@ public class GameView extends JPanel implements ChangeListener {
         }
         player1Mancala.setStones(model.getMancala1());
         player2Mancala.setStones(model.getMancala2());
-        undoDesc.setText("Undos Left:  Player One: " + model.getUndos(1) + "  Player Two " + model.getUndos(2));
+        undoDesc.setText("Undos Left:  Player One: " + model.getUndos(1) + "  Player Two: " + model.getUndos(2));
         playingPane.repaint();
     }
 
