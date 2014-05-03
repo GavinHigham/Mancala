@@ -30,8 +30,8 @@ public class GameView extends JPanel implements ChangeListener {
     int[] board;
     JLabel playerLabel;
     JLabel undoDesc;
-    private String player1TurnString = "Player one's turn";
-    private String player2TurnString = "Player two's turn";
+    private String player1TurnString = "Player One's Turn";
+    private String player2TurnString = "Player Two's Turn";
     private int undosLeft;
     PitIcon player1Mancala;
     PitIcon player2Mancala;
@@ -43,6 +43,11 @@ public class GameView extends JPanel implements ChangeListener {
         this.model = model;
         board = model.getPits();
         JButton undoButton = new JButton("Undo");
+
+        undoDesc = new JLabel("Undos Left: " + undosLeft);
+        undoDesc.setBounds(10, 10, 75, 50);
+        this.add(undoDesc);
+
         undoButton.setBounds(800, 10, 75, 50); //Size and position of button
         undoButton.addActionListener(new ActionListener() {
             @Override
@@ -52,11 +57,8 @@ public class GameView extends JPanel implements ChangeListener {
             }
         });
         this.add(undoButton);
-        
-        undoDesc = new JLabel("Undos Left: " + undosLeft);
-        
-        undoDesc.setBounds(700,10,75,50);
-        this.add(undoDesc);
+
+
 
         playerLabel = new JLabel(getPlayerTurnString());
         playerLabel.setBounds(100, 5, 200, 100);
