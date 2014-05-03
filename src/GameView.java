@@ -3,7 +3,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
@@ -74,6 +73,7 @@ public class GameView extends JPanel implements ChangeListener {
             JLabel pitLab = new JLabel();
             PitIcon tempPitIcon = new PitIcon(90, 90, pits[i]);
             tempPitIcon.setColors(config.getPitColor(), config.getStoneColor());
+            tempPitIcon.setRectangular(config.getRectangularPits());
             pitIcons.add(tempPitIcon); //Maintain reference for changing pit stones.
             pitLab.setIcon(tempPitIcon);
             pitLab.setPreferredSize(new Dimension(100, 100));
@@ -93,8 +93,11 @@ public class GameView extends JPanel implements ChangeListener {
         JLabel player2Pit = new JLabel();
         player1Mancala = new PitIcon(75, 200, model.getMancala1());
         player2Mancala = new PitIcon(75, 200, model.getMancala2());
+        //Configure mancalas
         player1Mancala.setColors(config.getPitColor(), config.getStoneColor());
+        player1Mancala.setRectangular(config.getRectangularPits());
         player2Mancala.setColors(config.getPitColor(), config.getStoneColor());
+        player2Mancala.setRectangular(config.getRectangularPits());
         player2Pit.setIcon(player1Mancala);
         player1Pit.setIcon(player2Mancala);
 

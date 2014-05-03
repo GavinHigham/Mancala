@@ -3,8 +3,8 @@ import java.awt.Color;
 
 public class DefaultBlue extends GameViewConfig {
 	
-	DefaultBlue(boolean showNumbers) {
-		super(showNumbers, false); //Yes numbers, no rainbow.
+	DefaultBlue(boolean showNumbers, boolean rectangularPits) {
+		super(showNumbers, false, rectangularPits); //Yes numbers, no rainbow.
 	}
 
 	public Color getStoneColor() {

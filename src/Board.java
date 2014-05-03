@@ -65,7 +65,6 @@ public class Board {
 		int ourMancalaIndex = player1Turn?7:0; //7 if it's player 1's turn, 0 otherwise.
 		int theirMancalaIndex = player1Turn?0:7; //0 if it's player 1's turn, 7 otherwise.
 		board[startPosition] = 0;
-		boolean doneTurn = false;
 		
 		/*
 		 * We know at this point that hand is at least 1.

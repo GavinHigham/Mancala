@@ -9,7 +9,7 @@ public class MancalaTest
     {
         ApplicationState model = new ApplicationState();
         MenuView menu = new MenuView(model);
-        GameViewConfig blueConfig = new DefaultBlue(true);
+        GameViewConfig blueConfig = new DefaultBlue(true, false);
         GameView newView = new GameView(model, blueConfig);
         GameView num = new GameView(model, blueConfig);
         model.addChangeListener(menu);
