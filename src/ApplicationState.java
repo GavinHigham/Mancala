@@ -22,7 +22,9 @@ public class ApplicationState {
     private JFrame mainFrame;
     private Stack<int[]> prevStates;
     private Stack<Boolean> playerTurns;
-    private int undos;
+    private int playerOneUndos;
+    private int playerTwoUndos;
+    private boolean canUndo;
     //private GameView displayedView;
 
     /**
@@ -33,6 +35,8 @@ public class ApplicationState {
         board = new Board();
         prevStates = new Stack();
         playerTurns = new Stack();
+        playerOneUndos = 3;
+        playerTwoUndos = 3;
 
         mainFrame = new JFrame();
         mainFrame.setMinimumSize(new Dimension(600, 200));
@@ -98,17 +102,36 @@ public class ApplicationState {
     }
     
     public boolean undo() {
-        if (prevStates.size() == 0 || undos <= 0) {
+        boolean playerToUndo = playerTurns.peek();
+        int undos;
+        if (playerToUndo) {
+            undos = playerOneUndos;
+        } else {
+            undos = playerTwoUndos;
+        }
+        
+        if (prevStates.size() == 0 || undos <= 0 || !canUndo) {
             return false;
         }
+        
         board.setBoardState(prevStates.pop(), playerTurns.pop());
-        undos--;
+        if(board.getPlayer1Turn()) {
+            playerOneUndos--;
+            canUndo = false;
+        } else {
+            playerTwoUndos--;
+            canUndo = false;
+        }
         updateChangeListeners();
         return true;
     }
     
-    public int currentUndos() {
-        return undos;
+    public int getUndos(int player) {
+        if (player == 1) {
+            return playerOneUndos;
+        } else {
+            return playerTwoUndos;
+        }
     }
 
     /*
@@ -167,7 +190,7 @@ public class ApplicationState {
             //Adds current board to stack for undo function
             prevStates.push(currentState);
             playerTurns.push(currentTurn);
-            undos = 3;
+            canUndo = true;
         }
         updateChangeListeners();
         return moveSuccessful;

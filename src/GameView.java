@@ -44,7 +44,7 @@ public class GameView extends JPanel implements ChangeListener {
         board = model.getPits();
         JButton undoButton = new JButton("Undo");
 
-        undoDesc = new JLabel("Undos Left: " + undosLeft);
+        undoDesc = new JLabel("Undos Left:  Player one: " + model.getUndos(1) + "  Player two " + model.getUndos(2));
         undoDesc.setBounds(10, 10, 75, 50);
         this.add(undoDesc);
 
@@ -142,8 +142,7 @@ public class GameView extends JPanel implements ChangeListener {
         }
         player1Mancala.setStones(model.getMancala1());
         player2Mancala.setStones(model.getMancala2());
-        undosLeft = model.currentUndos();
-        undoDesc.setText("Undos Left: " + undosLeft);
+        undoDesc.setText("Undos Left:  Player one: " + model.getUndos(1) + "  Player two " + model.getUndos(2));
         playingPane.repaint();
     }
 
