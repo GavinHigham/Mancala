@@ -44,18 +44,10 @@ public class Board {
 	}
 	
 	public boolean playMoveRowMajorOrder(int pit) {
-		if (!player1Turn && (pit < 0 || pit > 5)) {
-			return false; //Invalid move.
-		}
-		if (player1Turn && (pit < 6 || pit > 11)) {
-			return false; //Invalid move.
-		}
-		if (player1Turn) {
-			return playMove(pit - 6);
-		}
-		else {
-			return playMove(5 - pit);
-		}
+		 if (!player1Turn && (pit < 0 || pit > 5)) return false; //Invalid move.
+		 if (player1Turn && (pit < 6 || pit > 11)) return false; //Invalid move.
+		 if (player1Turn) return playMove(pit - 6);
+		 else return playMove(5 - pit);
 	}
 	
 	/*
@@ -81,14 +73,14 @@ public class Board {
 		 */
 		int i; //We want to check i after the loop to find our last played position.
 		//Modular arithmetic to keep us looping within the game board.
-		for (i = startPosition + 1; !doneTurn; i = (i+1)%14) {
+		for (i = (startPosition + 1)%14; hand != 0; i = (i+1)%14) {
 			//We don't place stones in the opponent's Mancala.
 			if (i != theirMancalaIndex) {
 				board[i]++;
 				hand--; //Move one stone from our hand to a pit.
 			}
-			if (hand == 0) doneTurn = true;
 		}
+		i = (i+13)%14; //Bring i back to the last pit a stone was placed in.
 		/*
 		 * At this point we're done the looping around phase.
 		 * If we played our last stone in an empty pit, we take it and the opposite stones.
@@ -128,12 +120,10 @@ public class Board {
 	public int[] getPits() {
 		int[] pits = new int[12];
 		int i;
-		for (i = 0; i < 6; i++) {
+		for (i = 0; i < 6; i++)
 			pits[i] = board[13-i]; //First row.
-		}
-		for (; i < 12; i++) { //i is now 6.
+		for (; i < 12; i++) //i is now 6.
 			pits[i] = board[i-5]; //Second row.
-		}
 		return pits;
 	}
 	

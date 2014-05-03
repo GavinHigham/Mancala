@@ -17,6 +17,8 @@ public class PitIcon implements Icon {
     private int width;
     private int height;
     private int stones;
+    private Color pitColor;
+    private Color stoneColor;
     
     /**
      * Initializes variables used in pitIcon
@@ -28,6 +30,8 @@ public class PitIcon implements Icon {
         this.width = width;
         this.height = height;
         this.stones = stones;
+        stoneColor = new Color(100, 100, 255);
+        pitColor = new Color(255, 255, 255);
     }
 
     /**
@@ -45,6 +49,8 @@ public class PitIcon implements Icon {
         
         Ellipse2D.Double p = new Ellipse2D.Double(2, 2, width - 4, height - 4);
         
+        g2.setColor(pitColor);
+        g2.fill(p);
         g2.setColor(Color.BLACK);
         g2.draw(p);
         
@@ -53,7 +59,7 @@ public class PitIcon implements Icon {
         if (stones > 0) {
         	int padding = 5;
 	        int numCols = (int)Math.ceil(Math.sqrt(stones));
-	        int diameter = width/Math.max(numCols, stones/numCols) - padding;
+	        int diameter = stones>1?width/numCols - padding:width/2-padding;
 	        
 	        for (int i = 0; i < stones; i++) {
 	        	Ellipse2D.Double tempEllipse = new Ellipse2D.Double(
@@ -61,7 +67,7 @@ public class PitIcon implements Icon {
 	        			(i/numCols)*(height/numCols)+padding,
 	        			diameter,
 	        			diameter);
-	        	g2.setColor(new Color(100, 100, 255));
+	        	g2.setColor(stoneColor);
 	        	g2.fill(tempEllipse);
 	        	g2.setColor(Color.BLACK);
 	        	g2.draw(tempEllipse);
@@ -74,6 +80,11 @@ public class PitIcon implements Icon {
     
     public void setStones(int stones) {
     	this.stones = stones;
+    }
+    
+    public void setColors(Color pitColor, Color stoneColor) {
+    	this.pitColor = pitColor;
+    	this.stoneColor = stoneColor;
     }
 
     /**

@@ -9,8 +9,9 @@ public class MancalaTest
     {
         ApplicationState model = new ApplicationState();
         MenuView menu = new MenuView(model);
-        JewelGameView newView = new JewelGameView(model);
-        NumberGameView num = new NumberGameView(model);
+        GameViewConfig blueConfig = new DefaultBlue(true);
+        GameView newView = new GameView(model, blueConfig);
+        GameView num = new GameView(model, blueConfig);
         model.addChangeListener(menu);
         model.addChangeListener(newView);
         model.addChangeListener(num);
