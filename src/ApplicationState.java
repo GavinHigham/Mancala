@@ -25,7 +25,6 @@ public class ApplicationState {
     private int playerOneUndos;
     private int playerTwoUndos;
     private boolean canUndo;
-    //private GameView displayedView;
 
     /**
      * Constructor to create a state of the game.
@@ -72,19 +71,6 @@ public class ApplicationState {
         mainFrame.repaint();
     }
 
-    /**
-     * Updates the state of the application.
-     */
-    public void updateState() {
-        //
-    }
-
-    /**
-     * Updates the game mode.
-     */
-    public void updateGameMode() {
-    }
-
     public void newGame(int stonesPerPit) {
         board.setNewGame(stonesPerPit);
     }
@@ -96,11 +82,13 @@ public class ApplicationState {
     public int[] getBoardState() {
         return board.getBoardState();
     }
-    
-    public Board getCurrentBoard() {
-        return board;
-    }
-    
+
+    /**
+     * Undoes the previous move if the player has enough undos and the undo.
+     * action did not fallow another one.
+     *
+     * @return true if the undo was successful.
+     */
     public boolean undo() {
         boolean playerToUndo = playerTurns.peek();
         int undos;
@@ -109,13 +97,13 @@ public class ApplicationState {
         } else {
             undos = playerTwoUndos;
         }
-        
+
         if (prevStates.size() == 0 || undos <= 0 || !canUndo) {
             return false;
         }
-        
+
         board.setBoardState(prevStates.pop(), playerTurns.pop());
-        if(board.getPlayer1Turn()) {
+        if (board.getPlayer1Turn()) {
             playerOneUndos--;
             canUndo = false;
         } else {
@@ -125,7 +113,12 @@ public class ApplicationState {
         updateChangeListeners();
         return true;
     }
-    
+
+    /**
+     * Returns the amount of undos the player specified has.
+     * @param player the player the undos are associated with.
+     * @return the number of undos left for that player.
+     */
     public int getUndos(int player) {
         if (player == 1) {
             return playerOneUndos;

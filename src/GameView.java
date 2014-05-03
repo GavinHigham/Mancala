@@ -123,6 +123,10 @@ public class GameView extends JPanel implements ChangeListener {
         // TODO Auto-generated method stub
     }
 
+    /**
+     * Creates a string that displays the player turn
+     * @return the string of the current players turn
+     */
     private String getPlayerTurnString() {
         if (model.getPlayer1Turn()) {
             return player1TurnString;
