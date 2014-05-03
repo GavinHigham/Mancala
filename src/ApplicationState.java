@@ -106,6 +106,10 @@ public class ApplicationState {
         updateChangeListeners();
         return true;
     }
+    
+    public int currentUndos() {
+        return undos;
+    }
 
     /*
      * (Wrapper for Board method)
