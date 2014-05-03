@@ -22,21 +22,16 @@ public class Board {
 	 */
 	Board() {
 		board = new int[14];
-		setNewGame(3);
-	}
-	
-	Board(int stonesPerPit) {
-		board = new int[14];
-		setNewGame(stonesPerPit);
+		setNewGame();
 	}
 	
 	/*
 	 * Sets or initializes the instance variables to a fresh board.
 	 */
-	public void setNewGame(int stonesPerPit) {
+	public void setNewGame() {
 		for (int i = 0; i < 14; i++) {
 			if ((i != 0) && (i != 7))
-				board[i] = stonesPerPit; //Every pit except the Mancalas gets 3 stones.
+				board[i] = 3; //Every pit except the Mancalas gets 3 stones.
 			else
 				board[i] = 0; //The Mancalas start empty.
 		}
@@ -44,18 +39,10 @@ public class Board {
 	}
 	
 	public boolean playMoveRowMajorOrder(int pit) {
-		if (!player1Turn && (pit < 0 || pit > 5)) {
-			return false; //Invalid move.
-		}
-		if (player1Turn && (pit < 6 || pit > 11)) {
-			return false; //Invalid move.
-		}
-		if (player1Turn) {
-			return playMove(pit - 6);
-		}
-		else {
-			return playMove(5 - pit);
-		}
+		if (player1Turn && (pit < 0 || pit > 5)) return false; //Invalid move.
+		if (!player1Turn && (pit < 6 || pit > 11)) return false; //Invalid move.
+		if (player1Turn) return playMove(pit - 6);
+		else return playMove(5 - pit);
 	}
 	
 	/*
@@ -66,7 +53,7 @@ public class Board {
 	public boolean playMove(int pit) {
 		if (pit < 0 || pit > 5) return false; //Invalid move. Index should be 0-5 inclusive.
 		//I use a lot of ternary operators. You can look them up if they're confusing!
-		int startPosition = player1Turn?pit+1:pit+8;
+		int startPosition = player1Turn?board[pit+1]:board[pit+8];
 		int hand = board[startPosition];
 		if (hand == 0) return false; //Invalid move. Starting pit must contain stones.
 		//Anything past this point is part of a valid move.
