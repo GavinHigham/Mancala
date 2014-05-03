@@ -19,29 +19,29 @@ public class MenuView extends JPanel implements ChangeListener {
     public MenuView(final ApplicationState model) {
         setLayout(new BorderLayout());
 
-        JButton styleNum = new JButton("Number Style");
-        JButton styleJewel = new JButton("Jewel Style");
+        JButton styleBlue = new JButton("Default Blue");
+        JButton styleRain = new JButton("Rainbow Mode");
         
         JLabel title = new JLabel("    Welcome to our Mancala game. Please choose a style.");
 
-        styleNum.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int styleIndex = 2;
-                model.setState(styleIndex);
-            }
-        });
-
-        styleJewel.addActionListener(new ActionListener() {
+        styleBlue.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int styleIndex = 1;
                 model.setState(styleIndex);
             }
         });
+
+        styleRain.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int styleIndex = 2;
+                model.setState(styleIndex);
+            }
+        });
         
-        add(styleNum, BorderLayout.EAST);
-        add(styleJewel, BorderLayout.WEST);
+        add(styleBlue, BorderLayout.EAST);
+        add(styleRain, BorderLayout.WEST);
         add(title, BorderLayout.CENTER);
     }
 
