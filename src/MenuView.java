@@ -52,7 +52,7 @@ public class MenuView extends JPanel implements ChangeListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int styleIndex = 2;
-                int stones = stonesPer.getSelectedIndex() + 4;
+                int stones = stonesPer.getSelectedIndex() + 3;
                 model.newGame(stones);
                 model.setState(styleIndex);
             }

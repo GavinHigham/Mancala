@@ -13,7 +13,7 @@ public class RainbowMode extends GameViewConfig {
     }
 
     public Color getPitColor() {
-        return getRandomColor();
+        return getRandomColor().brighter();
     }
 
     public Color getRandomColor() {
