@@ -25,7 +25,6 @@ public class ApplicationState {
     public ApplicationState() {
         changeListeners = new ArrayList<>();
         board = new Board();
-        board.setNewGame();
         mainFrame = new JFrame();
         mainFrame.setMinimumSize(new Dimension(600, 200));
         mainFrame.setLayout(new BorderLayout());
@@ -123,7 +122,9 @@ public class ApplicationState {
 	 * @return Whether or not the move was valid.
      */
     public boolean playMoveRowMajorOrder(int pit) {
-    	return board.playMoveRowMajorOrder(pit);
+    	boolean moveSuccessful = board.playMoveRowMajorOrder(pit);
+    	updateChangeListeners();
+    	return moveSuccessful;
     }
 
     /*

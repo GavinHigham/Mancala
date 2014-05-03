@@ -87,7 +87,8 @@ public class NumberGameView extends GameView {
             pitLab.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    model.playMoveRowMajorOrder(index);
+                    System.out.println(model.playMoveRowMajorOrder(index));
+                    //System.out.println(index);
                 }
             });
         }
