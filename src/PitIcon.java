@@ -52,8 +52,8 @@ public class PitIcon implements Icon {
         int labelY = height / 2;
         if (stones > 0) {
         	int padding = 5;
-	        int numCols = (int)Math.round(Math.sqrt(stones));
-	        int diameter = width/numCols - padding;
+	        int numCols = (int)Math.ceil(Math.sqrt(stones));
+	        int diameter = width/Math.max(numCols, stones/numCols) - padding;
 	        
 	        for (int i = 0; i < stones; i++) {
 	        	Ellipse2D.Double tempEllipse = new Ellipse2D.Double(
@@ -70,6 +70,10 @@ public class PitIcon implements Icon {
         String strStones = "" + stones;
         g2.drawString(strStones, labelX, labelY);
         //TODO Icon class only works for number view
+    }
+    
+    public void setStones(int stones) {
+    	this.stones = stones;
     }
 
     /**
