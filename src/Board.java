@@ -133,7 +133,7 @@ public class Board {
     public void checkPitsClear() {
         boolean player1RowsClear = true;
         boolean player2RowsClear = true;
-        for (int i = 1; i < 8; i++) {
+        for (int i = 1; i < 7; i++) {
             if (board[i] != 0) {
                 player1RowsClear = false;
             }
