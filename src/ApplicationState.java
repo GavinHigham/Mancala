@@ -47,7 +47,7 @@ public class ApplicationState {
     public void setState(int state) {
         mainFrame.getContentPane().removeAll();
         if (state > 0) {
-            mainFrame.setSize(900, 500);
+            mainFrame.setSize(900, 300);
         }
         mainFrame.validate();
         mainFrame.repaint();
