@@ -19,19 +19,23 @@ public class Board {
     boolean player1Turn;
     boolean gameOver;
 
-    /*
+    /**
      * Constructor for new Board objects.
      */
     Board() {
         board = new int[14];
     }
 
+    /**
+     * Constructor for new Board objects.
+     * @param stonesPerPit the number of stones that start in each pit.
+     */
     Board(int stonesPerPit) {
         board = new int[14];
         setNewGame(stonesPerPit);
     }
 
-    /*
+    /**
      * Sets or initializes the instance variables to a fresh board.
      */
     public void setNewGame(int stonesPerPit) {
@@ -67,7 +71,7 @@ public class Board {
         }
     }
 
-    /*
+    /**
      * Plays a move for the active player.
      * @param pit An index for the pit to begin with. Should be in the range 0-5 inclusive.
      * @return true if the move was successful, false if the move is invalid. Invalid can
@@ -126,7 +130,7 @@ public class Board {
         return true;
     }
 
-    /*
+    /**
      * Checks if either player's pits are completely empty.
      * @return true if either player has completely cleared their pits.
      */
@@ -164,26 +168,7 @@ public class Board {
          */
     }
 
-    /*
-     * Returns a copy of the current board state.
-     * @return a copy of the current board state.
-     */
-    public int[] getBoardState() {
-        return board.clone();
-    }
-
     /**
-     * Sets the board to a given state and player turn
-     *
-     * @param state the state of the board
-     * @param playerTurn True if it is player one's turn
-     */
-    public void setBoardState(int[] state, boolean playerTurn) {
-        board = state;
-        player1Turn = playerTurn;
-    }
-
-    /*
      * Returns a copy of the current board pits, not including Mancalas.
      * Like getBoardStata, but it looks like this:
      * [13][12][11][10][ 9][ 8]
@@ -204,7 +189,7 @@ public class Board {
         return pits;
     }
 
-    /*
+    /**
      * Gives the number of stones in the Mancala of player 1.
      * @return the number of stones in the Mancala of player 1.
      */
@@ -212,7 +197,7 @@ public class Board {
         return board[7]; //board[7] is, as shown in the diagram, player 1's Mancala.
     }
 
-    /*
+    /**
      * Gives the number of stones in the Mancala of player 2.
      * @return the number of stones in the Mancala of player 2.
      */
@@ -220,7 +205,7 @@ public class Board {
         return board[0]; //board[7] is, as shown in the diagram, player 2's Mancala.
     }
 
-    /*
+    /**
      * Tells which player's turn it is.
      * @return true if it is player 1's turn. False otherwise.
      */
@@ -228,7 +213,7 @@ public class Board {
         return player1Turn;
     }
 
-    /*
+    /**
      * Tells you if the game is won. The winning player can be determined by whoever has more stones.
      * @return true if the game is over.
      */
@@ -236,6 +221,10 @@ public class Board {
         return gameOver;
     }
     
+    /*
+     * (non-Javadoc)
+     * @see java.lang.Object#clone()
+     */
     @Override
     public Board clone() {
     	Board clonedBoard = new Board();

@@ -40,7 +40,7 @@ public class ApplicationState {
         mainFrame.setResizable(false);
     }
 
-    /*
+    /**
      * Gets the current state of the Mancala game.
      * @param state The state of the game.
      */
@@ -66,6 +66,10 @@ public class ApplicationState {
         mainFrame.repaint();
     }
 
+    /**
+     * Initializes or sets up a new game.
+     * @param stonesPerPit the number of stones to have in each pit.
+     */
     public void newGame(int stonesPerPit) {
     	moves = new Stack<Board>();
         Board newGame = new Board(stonesPerPit);
@@ -73,14 +77,6 @@ public class ApplicationState {
         playerOneUndos = 3;
         playerTwoUndos = 3;
         p1PlayedLast = true;
-    }
-
-    /*
-     * Gets the board int array representation from the Board object.
-     * @return the board int array representation.
-     */
-    public int[] getBoardState() {
-        return moves.peek().getBoardState();
     }
 
     /**
@@ -126,7 +122,7 @@ public class ApplicationState {
         }
     }
 
-    /*
+    /**
      * (Wrapper for Board method)
      * Returns a copy of the current board pits, not including Mancalas.
      * Like getBoardStata, but it looks like this:
@@ -139,7 +135,7 @@ public class ApplicationState {
         return moves.peek().getPits();
     }
 
-    /*
+    /**
      * (Wrapper for Board method)
      * Gives the number of stones in the Mancala of player 1.
      * @return the number of stones in the Mancala of player 1.
@@ -148,7 +144,7 @@ public class ApplicationState {
         return moves.peek().getMancala1(); //board[7] is, as shown in the diagram, player 1's Mancala.
     }
 
-    /*
+    /**
      * (Wrapper for Board method)
      * Gives the number of stones in the Mancala of player 2.
      * @return the number of stones in the Mancala of player 2.
@@ -157,7 +153,7 @@ public class ApplicationState {
         return moves.peek().getMancala2();
     }
 
-    /*
+    /**
      * Gets the board active player boolean.
      * @return true if it is Player 1's turn.
      */
@@ -165,7 +161,7 @@ public class ApplicationState {
         return moves.peek().getPlayer1Turn();
     }
 
-    /*
+    /**
      * Plays a move in Row Major Order. Useful for access from mouse listeners.
      * Looks like this:
      * [ 0][ 1][ 2][ 3][ 4][ 5]
@@ -189,7 +185,7 @@ public class ApplicationState {
         return moveSuccessful;
     }
 
-    /*
+    /**
      * Registers a new ChangeListener.
      * @param c The new ChangeListener to register.
      */
@@ -197,11 +193,15 @@ public class ApplicationState {
         changeListeners.add(c);
     }
     
+    /**
+     * Tells if the game is over.
+     * @return true if the game is over.
+     */
     public boolean getGameOver() {
         return moves.peek().getGameOver();
     }
 
-    /*
+    /**
      * Updates all registered views. Typically called after a state change of some sort.
      */
     public void updateChangeListeners() {
