@@ -16,6 +16,7 @@ public class Board {
 	
 	int[] board;
 	boolean player1Turn;
+	boolean gameOver;
 	
 	/*
 	 * Constructor for new Board objects.
@@ -41,6 +42,7 @@ public class Board {
 				board[i] = 0; //The Mancalas start empty.
 		}
 		player1Turn = true;
+		gameOver = false;
 	}
 	
 	public boolean playMoveRowMajorOrder(int pit) {
@@ -56,6 +58,7 @@ public class Board {
 	 * @return true if the move was successful, false if the move is invalid. Invalid can
 	 */
 	public boolean playMove(int pit) {
+		if (gameOver) return false; //Game is already over!
 		if (pit < 0 || pit > 5) return false; //Invalid move. Index should be 0-5 inclusive.
 		//I use a lot of ternary operators. You can look them up if they're confusing!
 		int startPosition = player1Turn?pit+1:pit+8;
@@ -94,10 +97,49 @@ public class Board {
 			board[(14-i)%14] -= stolenStones; //Steal from the other pit!
 			board[ourMancalaIndex] += 1 + stolenStones; //Put in our Mancala.
 		}
+		
 		//If we landed in our own Mancala, it's still our turn. Otherwise it flips.
 		if (i != ourMancalaIndex)
 			player1Turn = !player1Turn;
+		//Take all the stones from the opponent if we've cleared our pits.
+		checkPitsClear();
 		return true;
+	}
+	
+	/*
+	 * Checks if either player's pits are completely empty.
+	 * @return true if either player has completely cleared their pits.
+	 */
+	public void checkPitsClear() {
+		boolean player1RowsClear = true;
+		boolean player2RowsClear = true;
+		for (int i = 1; i < 8; i++) {
+			if (board[i] != 0)
+				player1RowsClear = false;
+		}
+		for (int i = 8; i < 14; i++) {
+			if (board[i] != 0)
+				player2RowsClear = false;
+		}
+		//Player 1 cleared their pits.
+		if (player1RowsClear) {
+			for (int i = 8; i < 14; i++) { //Iterate over player 2's pits and steal them.
+				board[7] += board[i];
+				board[i] = 0;
+			}
+			gameOver = true;
+		}
+		//Player 2 cleared their pits.
+		if (player2RowsClear) {
+			for (int i = 1; i < 7; i++) { //Iterate over player 1's pits and steal them.
+				board[0] += board[i];
+				board[i] = 0;
+			}
+			gameOver = true;
+		}
+		/* If both players cleared their pits at the same time, the loops do nothing.
+		 *  (And that's fine.)
+		 */
 	}
 	
 	/*
@@ -153,5 +195,13 @@ public class Board {
 	 */
 	public boolean getPlayer1Turn() {
 		return player1Turn;
+	}
+	
+	/*
+	 * Tells you if the game is won. The winning player can be determined by whoever has more stones.
+	 * @return true if the game is over.
+	 */
+	public boolean getGameOver() {
+		return gameOver;
 	}
 }
