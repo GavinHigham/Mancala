@@ -18,12 +18,11 @@ import java.util.Stack;
 public class ApplicationState {
 
     private ArrayList<ChangeListener> changeListeners; //Just views in this case.
-    private Board board;
     private JFrame mainFrame;
-    private Stack<int[]> prevStates;
-    private Stack<Boolean> playerTurns;
+    private Stack<Board> moves;
     private int playerOneUndos;
     private int playerTwoUndos;
+    private boolean p1PlayedLast;
     private boolean canUndo;
 
     /**
@@ -31,11 +30,7 @@ public class ApplicationState {
      */
     public ApplicationState() {
         changeListeners = new ArrayList<>();
-        board = new Board();
-        prevStates = new Stack();
-        playerTurns = new Stack();
-        playerOneUndos = 3;
-        playerTwoUndos = 3;
+        newGame(3);
 
         mainFrame = new JFrame();
         mainFrame.setMinimumSize(new Dimension(600, 200));
@@ -72,7 +67,12 @@ public class ApplicationState {
     }
 
     public void newGame(int stonesPerPit) {
-        board.setNewGame(stonesPerPit);
+    	moves = new Stack<Board>();
+        Board newGame = new Board(stonesPerPit);
+        moves.push(newGame);
+        playerOneUndos = 3;
+        playerTwoUndos = 3;
+        p1PlayedLast = true;
     }
 
     /*
@@ -80,7 +80,7 @@ public class ApplicationState {
      * @return the board int array representation.
      */
     public int[] getBoardState() {
-        return board.getBoardState();
+        return moves.peek().getBoardState();
     }
 
     /**
@@ -90,31 +90,26 @@ public class ApplicationState {
      * @return true if the undo was successful.
      */
     public boolean undo() {
-        if (prevStates.isEmpty()) {
+    	boolean undoSuccessful = false;
+        if (moves.size() == 1 || !canUndo) {
             return false;
         }
-        boolean playerToUndo = playerTurns.peek();
-        int undos;
-        if (playerToUndo) {
-            undos = playerOneUndos;
-        } else {
-            undos = playerTwoUndos;
-        }
-
-        if (undos <= 0 || !canUndo) {
-            return false;
-        }
-
-        board.setBoardState(prevStates.pop(), playerTurns.pop());
-        if (board.getPlayer1Turn()) {
+        //boolean playerOneUndoing = moves.peek().getPlayer1Turn();
+        if (p1PlayedLast && playerOneUndos > 0) {
             playerOneUndos--;
-            canUndo = false;
-        } else {
-            playerTwoUndos--;
+            moves.pop();
+            undoSuccessful = true;
             canUndo = false;
         }
+        if (!p1PlayedLast && playerTwoUndos > 0) {
+            playerTwoUndos--;
+            moves.pop();
+            undoSuccessful = true;
+            canUndo = false;
+        }
+        
         updateChangeListeners();
-        return true;
+        return undoSuccessful;
     }
 
     /**
@@ -141,7 +136,7 @@ public class ApplicationState {
      * @return a copy of the current board pits.
      */
     public int[] getPits() {
-        return board.getPits();
+        return moves.peek().getPits();
     }
 
     /*
@@ -150,7 +145,7 @@ public class ApplicationState {
      * @return the number of stones in the Mancala of player 1.
      */
     public int getMancala1() {
-        return board.getMancala1(); //board[7] is, as shown in the diagram, player 1's Mancala.
+        return moves.peek().getMancala1(); //board[7] is, as shown in the diagram, player 1's Mancala.
     }
 
     /*
@@ -159,7 +154,7 @@ public class ApplicationState {
      * @return the number of stones in the Mancala of player 2.
      */
     public int getMancala2() {
-        return board.getMancala2();
+        return moves.peek().getMancala2();
     }
 
     /*
@@ -167,7 +162,7 @@ public class ApplicationState {
      * @return true if it is Player 1's turn.
      */
     public boolean getPlayer1Turn() {
-        return board.getPlayer1Turn();
+        return moves.peek().getPlayer1Turn();
     }
 
     /*
@@ -180,14 +175,15 @@ public class ApplicationState {
      * @return Whether or not the move was valid.
      */
     public boolean playMoveRowMajorOrder(int pit) {
-        int[] currentState = board.getBoardState();
-        boolean currentTurn = board.getPlayer1Turn();
-        boolean moveSuccessful = board.playMoveRowMajorOrder(pit);
+    	Board newMove = moves.peek().clone();
+        boolean moveSuccessful = newMove.playMoveRowMajorOrder(pit);
         if (moveSuccessful) {
+        	p1PlayedLast = moves.peek().player1Turn;
+        	if (p1PlayedLast) playerTwoUndos = 3;
+        	else playerOneUndos = 3;
+        	canUndo = true;
             //Adds current board to stack for undo function
-            prevStates.push(currentState);
-            playerTurns.push(currentTurn);
-            canUndo = true;
+        	moves.push(newMove);
         }
         updateChangeListeners();
         return moveSuccessful;
@@ -201,8 +197,8 @@ public class ApplicationState {
         changeListeners.add(c);
     }
     
-    public boolean endGame() {
-        return board.getGameOver();
+    public boolean getGameOver() {
+        return moves.peek().getGameOver();
     }
 
     /*

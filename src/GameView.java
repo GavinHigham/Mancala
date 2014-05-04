@@ -72,7 +72,7 @@ public class GameView extends JPanel implements ChangeListener {
         playerLabel.setBounds(100, 5, 200, 100);
         this.add(playerLabel);
 
-        finished = model.endGame();
+        finished = model.getGameOver();
 
         win = new JLabel("");
         this.add(win);
@@ -156,7 +156,7 @@ public class GameView extends JPanel implements ChangeListener {
         player2Mancala.setStones(model.getMancala2());
         undoDesc.setText("Undos Left:  Player One: " + model.getUndos(1) + "  Player Two: " + model.getUndos(2));
 
-        finished = model.endGame();
+        finished = model.getGameOver();
         if (finished) {
             if (model.getMancala1() > model.getMancala2()) {
                 win.setText("Player One Wins!");
