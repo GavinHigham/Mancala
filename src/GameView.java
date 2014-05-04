@@ -30,8 +30,10 @@ public class GameView extends JPanel implements ChangeListener {
     int[] board;
     JLabel playerLabel;
     JLabel undoDesc;
+    JLabel win;
     private String player1TurnString = "Player One's Turn";
     private String player2TurnString = "Player Two's Turn";
+    private boolean finished;
     PitIcon player1Mancala;
     PitIcon player2Mancala;
     ArrayList<PitIcon> pitIcons;
@@ -69,6 +71,11 @@ public class GameView extends JPanel implements ChangeListener {
         playerLabel = new JLabel(getPlayerTurnString());
         playerLabel.setBounds(100, 5, 200, 100);
         this.add(playerLabel);
+
+        finished = model.endGame();
+
+        win = new JLabel("");
+        this.add(win);
 
         playingPane = new JPanel();
         playingPane.setLayout(new BorderLayout());
@@ -141,13 +148,24 @@ public class GameView extends JPanel implements ChangeListener {
         board = model.getPits();
 
         playerLabel.setText(getPlayerTurnString());
-        
+
         for (int i = 0; i < 12; i++) {
             pitIcons.get(i).setStones(board[i]);
         }
         player1Mancala.setStones(model.getMancala1());
         player2Mancala.setStones(model.getMancala2());
         undoDesc.setText("Undos Left:  Player One: " + model.getUndos(1) + "  Player Two: " + model.getUndos(2));
+
+        finished = model.endGame();
+        if (finished) {
+            if (model.getMancala1() > model.getMancala2()) {
+                win.setText("Player One Wins!");
+            } else {
+                win.setText("Player Two Wins!");
+            }
+            win.setBorder(BorderFactory.createLineBorder(Color.RED));
+            win.repaint();
+        }
         playingPane.repaint();
     }
 

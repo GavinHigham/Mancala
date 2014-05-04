@@ -200,6 +200,10 @@ public class ApplicationState {
     public void addChangeListener(ChangeListener c) {
         changeListeners.add(c);
     }
+    
+    public boolean endGame() {
+        return board.getGameOver();
+    }
 
     /*
      * Updates all registered views. Typically called after a state change of some sort.
