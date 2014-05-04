@@ -16,7 +16,6 @@ public class MancalaTest {
         model.addChangeListener(menu);
         model.addChangeListener(blue);
         model.addChangeListener(rain);
-        //Starts state at menu
         model.setState(0);
     }
 }

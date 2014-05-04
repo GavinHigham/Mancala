@@ -37,6 +37,14 @@ public class GameView extends JPanel implements ChangeListener {
     ArrayList<PitIcon> pitIcons;
     GameViewConfig config;
 
+    /**
+     * Creates a panel that displays the board as well as any other additions
+     * that are displayed on the panel
+     *
+     * @param model The application state that GameView uses
+     * @param config The configuration for the display of the pits and stones on
+     * the board
+     */
     public GameView(final ApplicationState model, GameViewConfig config) {
         this.config = config;
         this.model = model;
@@ -71,12 +79,9 @@ public class GameView extends JPanel implements ChangeListener {
         JPanel smallPits = new JPanel();
         pitIcons = new ArrayList<PitIcon>();
 
-        //Could only get grid layout to work. Gridbag layout would be better.
         smallPits.setLayout(new GridLayout(2, 6));
-        //Get current pits state.
         int[] pits = model.getPits();
 
-        //creates a pit and places stones in each of them
         for (int i = 0; i < 12; i++) {
             JLabel pitLab = new JLabel();
             PitIcon tempPitIcon = new PitIcon(90, 90, pits[i]);
@@ -95,13 +100,11 @@ public class GameView extends JPanel implements ChangeListener {
             });
         }
 
-        //Creates the large pits (Mancalas) and places their stones in them.
-        //Wrapping the Icons in JLabels.
         JLabel player1Pit = new JLabel();
         JLabel player2Pit = new JLabel();
         player1Mancala = new PitIcon(75, 200, model.getMancala1());
         player2Mancala = new PitIcon(75, 200, model.getMancala2());
-        //Configure mancalas
+
         player1Mancala.setColors(config.getPitColor(), config.getStoneColor());
         player1Mancala.setRectangular(config.getRectangularPits());
         player2Mancala.setColors(config.getPitColor(), config.getStoneColor());
@@ -118,7 +121,7 @@ public class GameView extends JPanel implements ChangeListener {
     }
 
     public void paintComponent() {
-        // TODO Auto-generated method stub
+        // Auto-generated method stub
     }
 
     /**
@@ -137,9 +140,8 @@ public class GameView extends JPanel implements ChangeListener {
     public void redraw() {
         board = model.getPits();
 
-        //Updating playerLabel
         playerLabel.setText(getPlayerTurnString());
-        //Updating pits.
+        
         for (int i = 0; i < 12; i++) {
             pitIcons.get(i).setStones(board[i]);
         }

@@ -40,10 +40,10 @@ public class PitIcon implements Icon {
 
     /**
      * Paints the icon with the given stones
-     * @param c
-     * @param g
-     * @param x
-     * @param y 
+     * @param c Component that could be used instead of current icon. Unused
+     * @param g The graphics context
+     * @param x The x positioning. Unused
+     * @param y The y positioning. Unused
      */
     @Override
     public void paintIcon(Component c, Graphics g, int x, int y) {
@@ -87,16 +87,29 @@ public class PitIcon implements Icon {
         g2.drawString(strStones, labelX, labelY);
         //TODO Icon class only works for number view
     }
-    
+
+    /**
+     * Sets the number of stones to be displayed in the pit
+     * @param stones the number of stones
+     */
     public void setStones(int stones) {
     	this.stones = stones;
     }
     
+    /**
+     * Sets the color of both the pit and stones within that pit
+     * @param pitColor The color of the pit
+     * @param stoneColor The color of the stones in this pit
+     */
     public void setColors(Color pitColor, Color stoneColor) {
     	this.pitColor = pitColor;
     	this.stoneColor = stoneColor;
     }
     
+    /**
+     * Sets the pit to be rectangular
+     * @param rectangular True if the pit is displayed as a rectangle
+     */
     public void setRectangular(boolean rectangular)
     {
     	this.rectangular = rectangular;

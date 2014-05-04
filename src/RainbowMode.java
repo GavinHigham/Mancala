@@ -19,7 +19,7 @@ public class RainbowMode extends GameViewConfig {
      * ellipses
      */
     RainbowMode(boolean showNumbers, boolean rectangularPits) {
-        super(showNumbers, false, rectangularPits); //Yes numbers, no rainbow.
+        super(showNumbers, rectangularPits); //Yes numbers, no rainbow.
     }
 
     /**

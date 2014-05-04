@@ -12,7 +12,7 @@ public class DefaultBlue extends GameViewConfig {
      * @param rectangularPits true if the pits are rectangular instead of ellipses
      */
 	DefaultBlue(boolean showNumbers, boolean rectangularPits) {
-		super(showNumbers, false, rectangularPits); //Yes numbers, no rainbow.
+		super(showNumbers, rectangularPits); //Yes numbers, no rainbow.
 	}
 
         /**

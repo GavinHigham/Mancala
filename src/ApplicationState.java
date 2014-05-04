@@ -47,7 +47,7 @@ public class ApplicationState {
 
     /*
      * Gets the current state of the Mancala game.
-     @param state The state of the game.
+     * @param state The state of the game.
      */
     public void setState(int state) {
         mainFrame.getContentPane().removeAll();
@@ -84,8 +84,8 @@ public class ApplicationState {
     }
 
     /**
-     * Undoes the previous move if the player has enough undos and the undo.
-     * action did not fallow another one.
+     * Undoes the previous move if the player has enough undos and the undo and
+     * the undo action did not immediately follow a previous one.
      *
      * @return true if the undo was successful.
      */
@@ -119,6 +119,7 @@ public class ApplicationState {
 
     /**
      * Returns the amount of undos the player specified has.
+     *
      * @param player the player the undos are associated with.
      * @return the number of undos left for that player.
      */
@@ -168,7 +169,7 @@ public class ApplicationState {
     public boolean getPlayer1Turn() {
         return board.getPlayer1Turn();
     }
-    
+
     /*
      * Plays a move in Row Major Order. Useful for access from mouse listeners.
      * Looks like this:
