@@ -235,4 +235,13 @@ public class Board {
     public boolean getGameOver() {
         return gameOver;
     }
+    
+    @Override
+    public Board clone() {
+    	Board clonedBoard = new Board();
+    	clonedBoard.board = this.board.clone();
+    	clonedBoard.player1Turn = this.player1Turn;
+    	clonedBoard.gameOver = this.gameOver;
+    	return clonedBoard;
+    }
 }
