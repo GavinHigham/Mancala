@@ -58,8 +58,6 @@ public class GameView extends JPanel implements ChangeListener {
         });
         this.add(undoButton);
 
-
-
         playerLabel = new JLabel(getPlayerTurnString());
         playerLabel.setBounds(100, 5, 200, 100);
         this.add(playerLabel);
@@ -125,6 +123,7 @@ public class GameView extends JPanel implements ChangeListener {
 
     /**
      * Creates a string that displays the player turn
+     *
      * @return the string of the current players turn
      */
     private String getPlayerTurnString() {

@@ -90,6 +90,9 @@ public class ApplicationState {
      * @return true if the undo was successful.
      */
     public boolean undo() {
+        if (prevStates.isEmpty()) {
+            return false;
+        }
         boolean playerToUndo = playerTurns.peek();
         int undos;
         if (playerToUndo) {
@@ -98,7 +101,7 @@ public class ApplicationState {
             undos = playerTwoUndos;
         }
 
-        if (prevStates.size() == 0 || undos <= 0 || !canUndo) {
+        if (undos <= 0 || !canUndo) {
             return false;
         }
 
@@ -165,7 +168,7 @@ public class ApplicationState {
     public boolean getPlayer1Turn() {
         return board.getPlayer1Turn();
     }
-
+    
     /*
      * Plays a move in Row Major Order. Useful for access from mouse listeners.
      * Looks like this:
