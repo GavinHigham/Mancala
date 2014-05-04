@@ -165,6 +165,9 @@ public class GameView extends JPanel implements ChangeListener {
             }
             win.setBorder(BorderFactory.createLineBorder(Color.RED));
             win.repaint();
+        } else {
+            win.setText("");
+            win.setBorder(BorderFactory.createEmptyBorder());
         }
         playingPane.repaint();
     }
