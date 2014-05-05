@@ -13,6 +13,7 @@ import javax.swing.Icon;
 
 /**
  * This class creates a pit icon
+ * 
  * @author Dakota
  */
 public class PitIcon implements Icon {
@@ -26,9 +27,10 @@ public class PitIcon implements Icon {
     
     /**
      * Initializes variables used in pitIcon
-     * @param width
-     * @param height
-     * @param stones 
+     * 
+     * @param width The width of the icon.
+     * @param height The height of the icon.
+     * @param stones The stones in the pits.
      */
     public PitIcon(int width, int height, int stones) {
         this.width = width;
@@ -40,6 +42,7 @@ public class PitIcon implements Icon {
 
     /**
      * Paints the icon with the given stones
+     * 
      * @param c Component that could be used instead of current icon. Unused
      * @param g The graphics context
      * @param x The x positioning. Unused
@@ -90,6 +93,7 @@ public class PitIcon implements Icon {
 
     /**
      * Sets the number of stones to be displayed in the pit
+     * 
      * @param stones the number of stones
      */
     public void setStones(int stones) {
@@ -98,6 +102,7 @@ public class PitIcon implements Icon {
     
     /**
      * Sets the color of both the pit and stones within that pit
+     * 
      * @param pitColor The color of the pit
      * @param stoneColor The color of the stones in this pit
      */
@@ -108,6 +113,7 @@ public class PitIcon implements Icon {
     
     /**
      * Sets the pit to be rectangular
+     * 
      * @param rectangular True if the pit is displayed as a rectangle
      */
     public void setRectangular(boolean rectangular)
@@ -116,8 +122,9 @@ public class PitIcon implements Icon {
     }
 
     /**
-     * Returns the icon width
-     * @return 
+     * Gets the icon width
+     * 
+     * @return The width of the icon.
      */
     @Override
     public int getIconWidth() {
@@ -125,8 +132,9 @@ public class PitIcon implements Icon {
     }
 
     /**
-     * returns the icon height
-     * @return 
+     * Gets the icon height
+     * 
+     * @return The height of the icon.
      */
     @Override
     public int getIconHeight() {
