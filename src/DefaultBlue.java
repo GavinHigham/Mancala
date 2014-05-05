@@ -2,12 +2,14 @@ import java.awt.Color;
 
 /**
  * Creates pits where each pit is white and each stone is blue
+ * 
  * @author P.U.G.S
  */
 public class DefaultBlue extends GameViewConfig {
 	
     /**
      * Initializes variables used in DefaultBlue
+     * 
      * @param showNumbers true if numbers are displayed in each pit depicting the number of stones
      * @param rectangularPits true if the pits are rectangular instead of ellipses
      */
@@ -17,6 +19,7 @@ public class DefaultBlue extends GameViewConfig {
 
         /**
          * Gets the color of the stones
+         * 
          * @return the color of the stones
          */
 	public Color getStoneColor() {
@@ -25,6 +28,7 @@ public class DefaultBlue extends GameViewConfig {
 
         /**
          * Gets the color of the pit
+         * 
          * @return the color of the pit
          */
 	public Color getPitColor() {
