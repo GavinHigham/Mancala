@@ -4,7 +4,7 @@ import java.util.Random;
 
 /**
  * Creates pits where each pit is a random color and each pit's stones is a
- * random
+ * random color.
  *
  * @author P.U.G.S
  */
@@ -34,6 +34,7 @@ public class RainbowMode extends GameViewConfig {
 
     /**
      * Gets the color of the pit
+     * 
      * @return the color of the pit
      */
     @Override
@@ -43,6 +44,7 @@ public class RainbowMode extends GameViewConfig {
 
     /**
      * Creates a random color
+     * 
      * @return a random color
      */
     public Color getRandomColor() {
