@@ -28,6 +28,7 @@ public class Board {
 
     /**
      * Constructor for new Board objects.
+     * 
      * @param stonesPerPit the number of stones that start in each pit.
      */
     Board(int stonesPerPit) {
@@ -72,7 +73,8 @@ public class Board {
     }
 
     /**
-     * Plays a move for the active player.
+     * Plays a move for the active (current) player.
+     * 
      * @param pit An index for the pit to begin with. Should be in the range 0-5 inclusive.
      * @return true if the move was successful, false if the move is invalid. Invalid can
      */
@@ -82,7 +84,7 @@ public class Board {
         }
         if (pit < 0 || pit > 5) {
             return false; //Invalid move. Index should be 0-5 inclusive.
-        }		//I use a lot of ternary operators. You can look them up if they're confusing!
+        }	
         int startPosition = player1Turn ? pit + 1 : pit + 8;
         int hand = board[startPosition];
         if (hand == 0) {
@@ -174,6 +176,7 @@ public class Board {
      * [13][12][11][10][ 9][ 8]
      * [ 1][ 2][ 3][ 4][ 5][ 6]
      * For when these need to be accessed in left-to-right, top-to-bottom order.
+     * 
      * @return a copy of the current board pits.
      */
     public int[] getPits() {
@@ -191,6 +194,7 @@ public class Board {
 
     /**
      * Gives the number of stones in the Mancala of player 1.
+     * 
      * @return the number of stones in the Mancala of player 1.
      */
     public int getMancala1() {
@@ -199,6 +203,7 @@ public class Board {
 
     /**
      * Gives the number of stones in the Mancala of player 2.
+     * 
      * @return the number of stones in the Mancala of player 2.
      */
     public int getMancala2() {
@@ -207,6 +212,7 @@ public class Board {
 
     /**
      * Tells which player's turn it is.
+     * 
      * @return true if it is player 1's turn. False otherwise.
      */
     public boolean getPlayer1Turn() {
@@ -215,6 +221,7 @@ public class Board {
 
     /**
      * Tells you if the game is won. The winning player can be determined by whoever has more stones.
+     * 
      * @return true if the game is over.
      */
     public boolean getGameOver() {
@@ -222,7 +229,7 @@ public class Board {
     }
     
     /*
-     * (non-Javadoc)
+     * Make a clone of the Board.
      * @see java.lang.Object#clone()
      */
     @Override
