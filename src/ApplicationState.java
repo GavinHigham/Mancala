@@ -10,8 +10,8 @@ import javax.swing.event.ChangeListener;
 import java.util.Stack;
 
 /**
- * This class keeps track of the state of the game and the board. It keeps track
- * of which views are being displayed.
+ * This class keeps track of the state of the game and the board.
+ * It also keeps track of which views are being displayed.
  *
  * @author P.U.G.S
  */
@@ -53,9 +53,8 @@ public class ApplicationState {
         mainFrame.repaint();
         JPanel style = (JPanel) changeListeners.get(state);
 
-        //This is ugly as hell. Can someone make something better.
         if (state != 0) {
-            //Have to cast to call redraw otherwise first screen does not display stones
+            //Have to cast to call redraw stones in first screen
             GameView tmp = (GameView) style;
             tmp.redraw();
             style = (JPanel) tmp;
@@ -68,6 +67,7 @@ public class ApplicationState {
 
     /**
      * Initializes or sets up a new game.
+     * 
      * @param stonesPerPit the number of stones to have in each pit.
      */
     public void newGame(int stonesPerPit) {
@@ -80,7 +80,7 @@ public class ApplicationState {
     }
 
     /**
-     * Undoes the previous move if the player has enough undos and the undo and
+     * Undoes the previous move if the player has enough undos and
      * the undo action did not immediately follow a previous one.
      *
      * @return true if the undo was successful.
@@ -90,7 +90,7 @@ public class ApplicationState {
         if (moves.size() == 1 || !canUndo) {
             return false;
         }
-        //boolean playerOneUndoing = moves.peek().getPlayer1Turn();
+
         if (p1PlayedLast && playerOneUndos > 0) {
             playerOneUndos--;
             moves.pop();
@@ -109,7 +109,7 @@ public class ApplicationState {
     }
 
     /**
-     * Returns the amount of undos the player specified has.
+     * Gets the amount of undos the specified player has.
      *
      * @param player the player the undos are associated with.
      * @return the number of undos left for that player.
@@ -187,6 +187,7 @@ public class ApplicationState {
 
     /**
      * Registers a new ChangeListener.
+     * 
      * @param c The new ChangeListener to register.
      */
     public void addChangeListener(ChangeListener c) {
@@ -195,6 +196,7 @@ public class ApplicationState {
     
     /**
      * Tells if the game is over.
+     * 
      * @return true if the game is over.
      */
     public boolean getGameOver() {
@@ -202,7 +204,8 @@ public class ApplicationState {
     }
 
     /**
-     * Updates all registered views. Typically called after a state change of some sort.
+     * Updates all registered views.
+     * Typically called after a state change of some sort.
      */
     public void updateChangeListeners() {
         for (ChangeListener c : changeListeners) {
