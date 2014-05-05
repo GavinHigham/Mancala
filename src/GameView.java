@@ -16,7 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 /*
- * This class gives us version of the board game,
+ * This class provides one version of the board game,
  * in which the numbers are displayed in the pits,
  * representing the number of stones.
  *
@@ -144,6 +144,10 @@ public class GameView extends JPanel implements ChangeListener {
         }
     }
 
+   /*
+    * Method to redraw elements on the board to keep it
+    * up to date througout the game.
+    */
     public void redraw() {
         board = model.getPits();
 
@@ -172,6 +176,10 @@ public class GameView extends JPanel implements ChangeListener {
         playingPane.repaint();
     }
 
+    /*
+     * Every time the state of the game is changed,
+     * like when a move is made, elements are redrawn.
+     */
     public void stateChanged(ChangeEvent e) {
         redraw();
     }
