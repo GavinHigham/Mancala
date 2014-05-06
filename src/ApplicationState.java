@@ -42,6 +42,7 @@ public class ApplicationState {
 
     /**
      * Gets the current state of the Mancala game.
+     * 
      * @param state The state of the game.
      */
     public void setState(int state) {
@@ -129,6 +130,7 @@ public class ApplicationState {
      * [13][12][11][10][ 9][ 8]
      * [ 1][ 2][ 3][ 4][ 5][ 6]
      * For when these need to be accessed in left-to-right, top-to-bottom order.
+     * 
      * @return a copy of the current board pits.
      */
     public int[] getPits() {
@@ -138,6 +140,7 @@ public class ApplicationState {
     /**
      * (Wrapper for Board method)
      * Gives the number of stones in the Mancala of player 1.
+     * 
      * @return the number of stones in the Mancala of player 1.
      */
     public int getMancala1() {
@@ -147,6 +150,7 @@ public class ApplicationState {
     /**
      * (Wrapper for Board method)
      * Gives the number of stones in the Mancala of player 2.
+     * 
      * @return the number of stones in the Mancala of player 2.
      */
     public int getMancala2() {
@@ -155,6 +159,7 @@ public class ApplicationState {
 
     /**
      * Gets the board active player boolean.
+     * 
      * @return true if it is Player 1's turn.
      */
     public boolean getPlayer1Turn() {
@@ -167,6 +172,7 @@ public class ApplicationState {
      * [ 0][ 1][ 2][ 3][ 4][ 5]
      * [ 6][ 7][ 8][ 9][10][11]
      * Basically, give the integer for which pit you want to try a move from.
+     * 
      * @param pit the pit to attempt to play a move from.
      * @return Whether or not the move was valid.
      */
