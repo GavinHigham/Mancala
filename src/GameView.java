@@ -16,10 +16,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 /*
- * This class provides one version of the board game,
- * in which the numbers are displayed in the pits,
- * representing the number of stones.
- *
+ * This class displays the gameboard during the game depending on how
+ * this particular version of the board is configured. 
+ * 
  * @author P.U.G.S.
  */
 
