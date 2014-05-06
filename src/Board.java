@@ -90,33 +90,33 @@ public class Board {
         if (hand == 0) {
             return false; //Invalid move. Starting pit must contain stones.
         }		//Anything past this point is part of a valid move.
-        int ourMancalaIndex = player1Turn ? 7 : 0; //7 if it's player 1's turn, 0 otherwise.
-        int theirMancalaIndex = player1Turn ? 0 : 7; //0 if it's player 1's turn, 7 otherwise.
+        int ourMancalaIndex = player1Turn ? 7 : 0; // 7 if it's player 1's turn, 0 otherwise.
+        int theirMancalaIndex = player1Turn ? 0 : 7; // 0 if it's player 1's turn, 7 otherwise.
         board[startPosition] = 0;
 
         /*
          * We know at this point that hand is at least 1.
          * The smallest move one can make is to pick up one stone and move it over 1.
          */
-        int i; //We want to check i after the loop to find our last played position.
-        //Modular arithmetic to keep us looping within the game board.
+        int i; // We want to check i after the loop to find our last played position.
+        // Modular arithmetic to keep us looping within the game board.
         for (i = (startPosition + 1) % 14; hand != 0; i = (i + 1) % 14) {
-            //We don't place stones in the opponent's Mancala.
+            // We don't place stones in the opponent's Mancala.
             if (i != theirMancalaIndex) {
                 board[i]++;
                 hand--; //Move one stone from our hand to a pit.
             }
         }
         i = (i + 13) % 14; //Bring i back to the last pit a stone was placed in.
-		/*
+	/*
          * At this point we're done the looping around phase.
          * If we played our last stone in an empty pit, we take it and the opposite stones.
          * We then put those stones in our Mancala.
          */
         //This checks that we landed in our own empty pit.
         if (board[i] == 1 && (i - 7 > 0) == !player1Turn) {
-            //(14-i)%14 is the index of the pit opposite i, or i if i is a Mancala index.
-            //It means if we steal from our own Mancala, everything is put back.
+            // (14-i)%14 is the index of the pit opposite i, or i if i is a Mancala index.
+            // It means if we steal from our own Mancala, everything is put back.
             int stolenStones = board[(14 - i) % 14];
             board[i]--; //This is the stone from the last pit that we landed in.
             board[(14 - i) % 14] -= stolenStones; //Steal from the other pit!
@@ -134,6 +134,7 @@ public class Board {
 
     /**
      * Checks if either player's pits are completely empty.
+     * 
      * @return true if either player has completely cleared their pits.
      */
     public void checkPitsClear() {
