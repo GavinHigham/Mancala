@@ -88,7 +88,6 @@ public class PitIcon implements Icon {
         }
         String strStones = "" + stones;
         g2.drawString(strStones, labelX, labelY);
-        //TODO Icon class only works for number view
     }
 
     /**
