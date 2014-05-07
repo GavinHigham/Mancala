@@ -126,7 +126,7 @@ public class ApplicationState {
     /**
      * (Wrapper for Board method)
      * Returns a copy of the current board pits, not including Mancalas.
-     * Like getBoardStata, but it looks like this:
+     * Like getBoardState, but it looks like this:
      * [13][12][11][10][ 9][ 8]
      * [ 1][ 2][ 3][ 4][ 5][ 6]
      * For when these need to be accessed in left-to-right, top-to-bottom order.

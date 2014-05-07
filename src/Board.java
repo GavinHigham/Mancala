@@ -38,6 +38,8 @@ public class Board {
 
     /**
      * Sets or initializes the instance variables to a fresh board.
+     * 
+     * @param stonesPerPit the number of stones each pit should start with.
      */
     public void setNewGame(int stonesPerPit) {
         for (int i = 0; i < 14; i++) {
